@@ -9,7 +9,7 @@ export * from './src/nodeHelpers'
 export * from './src/Sequence'
 
 export * from './src/domHelpers/domHelpers'
-export * from './src/domHelpers/hyperFlex'
+export * from './src/domHelpers/HyperFlex'
 
 export * from './src/mapExtended/MapExtended'
 export * from './src/mapExtended/MapOfArray'
