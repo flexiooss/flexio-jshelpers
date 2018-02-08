@@ -10,11 +10,12 @@ import {
 
 class HyperFlex {
   constructor(querySelector, ...args) {
-    return this._createElement(querySelector, ...args)
+    this.querySelector = querySelector
+    this.args = args
   }
 
   static html(querySelector, ...args) {
-    return new HyperFlex(querySelector, ...args)
+    return new HyperFlex(querySelector, ...args)._createElement()
   }
 
   /**
@@ -26,12 +27,12 @@ class HyperFlex {
      *    - {NodeElement} NodeElement for append
      * @returns {NodeElement}
      */
-  _createElement(querySelector, ...args) {
+  _createElement() {
     const {
       tag,
       id,
       classList
-    } = this._parseQuerySelector(querySelector)
+    } = this._parseQuerySelector(this.querySelector)
     const element = document.createElement(tag)
     if (id) {
       element.id = id
@@ -40,7 +41,7 @@ class HyperFlex {
       element.classList.add(...classList)
     }
 
-    this._parseArguments(element, ...args)
+    this._parseArguments(element, ...this.args)
     return element
   }
 
