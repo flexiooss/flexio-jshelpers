@@ -1,0 +1,9 @@
+{
+    "name": "flexio-jshelpers",
+    "version": "1.0.0",
+    "description": "Generic Javascript utils",
+    "module": "index.es.js",
+    "repository": "git@github.com:flexiooss/flexio-jshelpers.git",
+    "author": "Thomas Chatelain (https://github.com/TomAchT)",
+    "license": "Apache-2.0"
+}
