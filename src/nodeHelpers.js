@@ -1,13 +1,13 @@
 import {
-  should
-} from './should'
+  assert
+} from './assert'
 import {
   isNode
 } from './is'
 
 export const removeChildren = (node, start, end) => {
-  should(isNode(node),
-    'removeChildren: `node` argument should be Node')
+  assert(isNode(node),
+    'removeChildren: `node` argument assert be Node')
   start = start || 0
   end = end || node.childNodes.length
 
@@ -15,8 +15,8 @@ export const removeChildren = (node, start, end) => {
     return false
   }
 
-  should(!!(start <= end),
-    'removeChildren: `start` should be less than `end`')
+  assert(!!(start <= end),
+    'removeChildren: `start` assert be less than `end`')
 
   while (start < end) {
     node.removeChild(node.childNodes[start])

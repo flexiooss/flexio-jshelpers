@@ -1,7 +1,7 @@
 'use strict'
 import {
-  should
-} from './should'
+  assert
+} from './assert'
 import {
   isNode
 } from './is'
@@ -10,9 +10,9 @@ const KEY_ROOT = '__flexio__'
 
 class AttributeHandler {
   constructor(element, scope) {
-    should(
+    assert(
       isNode(element),
-      'flexio-nodes-reconciliation:AttributeHandler:constructor: `element` argument should be a NodeElement, `%s` given',
+      'flexio-nodes-reconciliation:AttributeHandler:constructor: `element` argument assert be a NodeElement, `%s` given',
       typeof element)
     this.element = element
     this.scope = scope

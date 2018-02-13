@@ -2,8 +2,8 @@ import {
   MapExtended
 } from './MapExtended'
 import {
-  should
-} from '../should'
+  assert
+} from '../assert'
 
 class MapOfArray extends MapExtended {
   _initValue(key) {
@@ -11,8 +11,8 @@ class MapOfArray extends MapExtended {
   }
 
   _constraint(value) {
-    should(Array.isArray(value),
-      'hotballoon:MapOfArray:_constraint: `value` argument should be an instance of Array')
+    assert(Array.isArray(value),
+      'hotballoon:MapOfArray:_constraint: `value` argument assert be an instance of Array')
     return value
   }
 

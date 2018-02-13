@@ -1,4 +1,4 @@
-export * from './src/should'
+export * from './src/assert'
 export * from './src/is'
 
 export * from './src/classHelpers'
