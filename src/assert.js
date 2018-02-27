@@ -1,18 +1,27 @@
 'use strict'
-export const assert = function(condition, format, ...formatArgs) {
-  if (typeof __ASSERT__ !== 'undefined') {
-    if (format === undefined) {
-      throw new Error('`assert` function require an error format argument')
+class AssertionError extends Error {
+  constructor(...params) {
+    super(...params)
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, AssertionError)
     }
-    condition = (typeof condition === 'function') ? condition() : condition
-    if (!condition) {
+    this.name = 'AssertionError'
+    this.date = new Date()
+  }
+}
+
+export const assert = function(assert, message, ...messageArgs) {
+  if (typeof __ASSERT__ !== 'undefined') {
+    if (message === undefined) {
+      throw new Error('`assert` function require an error message argument')
+    }
+    if (!((typeof assert === 'function') ? assert() : assert)) {
       var ArgIndex = 0
-      const error = new Error(
-        format.replace(/%s/g, () =>
-          formatArgs[ArgIndex++]
+      throw new AssertionError(
+        message.replace(/%s/g, () =>
+          messageArgs[ArgIndex++]
         )
       )
-      throw error
     }
   }
 }

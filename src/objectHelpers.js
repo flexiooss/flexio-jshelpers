@@ -1,3 +1,8 @@
+import {
+  isObject,
+  isUndefined
+} from './is'
+
 export const sortObject = (object, callback) => {
   var arrayTemp = []
   var objectTemp = []
@@ -80,6 +85,7 @@ export const deepKeyResolver = (object, keys, separator = '.') => {
   } while (arrayKeys.length)
   return ret
 }
+
 export const intersectObjectByKey = (object) => {
   return Object.keys(object)
     .filter(key => this.storesName.includes(key))
@@ -88,10 +94,51 @@ export const intersectObjectByKey = (object) => {
       return obj
     }, {})
 }
+
 export const maxKey = (object) => {
   var max
   for (let key in object) {
     max = (key > max) ? key : max
   }
   return max
+}
+
+/**
+ *
+ * @param {Object} object
+ * @param {Array:String} properties
+ * @returns {boolean}
+ */
+export const hasProperties = (object, properties) => {
+  for (let prop of properties) {
+    if (!object.hasOwnProperty(prop)) {
+      return false
+    }
+  }
+  return true
+}
+
+export const cloneWithJsonMethod = (object) => {
+  return JSON.parse(JSON.stringify(object))
+}
+
+export const mergeWithoutPrototype = (target, ...sources) => {
+  return Object.assign(target, ...sources)
+}
+
+export const deepMerge = (target, source) => {
+  for (let k in source) {
+    const sourceValue = source[k]
+    const targetValue = target[k]
+
+    if (isObject(sourceValue)) {
+      target[k] = (!isUndefined(targetValue)) ? deepMerge(isObject(targetValue) ? targetValue : {}, cloneWithJsonMethod(sourceValue)) : cloneWithJsonMethod(sourceValue)
+    } else if (Array.isArray(sourceValue)) {
+      target[k] = (Array.isArray(targetValue)) ? [...new Set(targetValue.concat(cloneWithJsonMethod(sourceValue)))] : cloneWithJsonMethod(sourceValue)
+    } else {
+      target[k] = sourceValue
+    }
+  }
+
+  return target
 }
