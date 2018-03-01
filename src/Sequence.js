@@ -2,8 +2,8 @@ import {
   isNumber
 } from './is'
 import {
-  should
-} from './should'
+  assert
+} from './assert'
 
 class Sequence {
   constructor(prefix) {
@@ -14,8 +14,8 @@ class Sequence {
       configurable: false,
       get: () => lastID,
       set: (newID) => {
-        should(isNumber(newID),
-          'flexio-jshelpers:Sequence:set: _lastID property should be a Number')
+        assert(isNumber(newID),
+          'flexio-jshelpers:Sequence:set: _lastID property assert be a Number')
         lastID = newID
       }
     })

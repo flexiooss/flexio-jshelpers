@@ -1,6 +1,6 @@
 import {
-  should
-} from '../should'
+  assert
+} from '../assert'
 
 class MapExtended {
   constructor() {
@@ -10,18 +10,18 @@ class MapExtended {
     this._initValue(key)
   }
   setCollection(collection) {
-    should(collection instanceof Map,
-      'hotballoon:ExtendMap:set: `collection` argument should be an instance of Map')
+    assert(collection instanceof Map,
+      'hotballoon:ExtendMap:set: `collection` argument assert be an instance of Map')
     this._collection = collection
   }
   set(key, value) {
-    should(key !== undefined,
-      'hotballoon:ObjectMap:add: `key` argument should not be undefined')
+    assert(key !== undefined,
+      'hotballoon:ObjectMap:add: `key` argument assert not be undefined')
     this._collection.set(key, this._constraint(value))
   }
   add(key, value, keyValue) {
-    should(key !== undefined,
-      'hotballoon:ObjectMap:add: `key` argument should not be undefined')
+    assert(key !== undefined,
+      'hotballoon:ObjectMap:add: `key` argument assert not be undefined')
     if (!this._collection.has(key)) {
       this._initValue(key)
     }

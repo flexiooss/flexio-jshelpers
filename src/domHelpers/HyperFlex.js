@@ -5,8 +5,8 @@ import {
   isObject
 } from '../is'
 import {
-  should
-} from '../should'
+  assert
+} from '../assert'
 
 class HyperFlex {
   constructor(querySelector, ...args) {
@@ -52,15 +52,15 @@ class HyperFlex {
      *
      */
   _parseQuerySelector(querySelector) {
-    should(isString(querySelector),
-      'flexio-jshelpers:parseQuerySelector: `querySelector` argument should be a String `%s` given',
+    assert(isString(querySelector),
+      'flexio-jshelpers:parseQuerySelector: `querySelector` argument assert be a String `%s` given',
       typeof querySelector
     )
     var re = '^([\\w]*)([#\\w\\d-_]*)?([.\\w\\d-_]*)?$'
     const matches = new RegExp(re, 'gi').exec(querySelector)
     const tag = matches[1]
-    should(!!tag,
-      'flexio-jshelpers:parseQuerySelector: `tag` argument should not be empty'
+    assert(!!tag,
+      'flexio-jshelpers:parseQuerySelector: `tag` argument assert not be empty'
     )
     const id = (matches[2]) ? matches[2].substr(1) : ''
     const classList = (matches[3]) ? matches[3].substr(1).split('.') : []
@@ -78,8 +78,8 @@ class HyperFlex {
      * @returns {NodeElement} element
      */
   _parseArguments(element, ...args) {
-    should(isNode(element),
-      'flexio-jshelpers:parseArguments: `element` argument should be a NodeElement `%s` given',
+    assert(isNode(element),
+      'flexio-jshelpers:parseArguments: `element` argument assert be a NodeElement `%s` given',
       typeof element
     )
     let countOfArgs = args.length
@@ -104,12 +104,12 @@ class HyperFlex {
      */
 
   _setStyles(element, styles) {
-    should(isNode(element),
-      'flexio-jshelpers:setStyles: `element` argument should be a NodeElement `%s` given',
+    assert(isNode(element),
+      'flexio-jshelpers:setStyles: `element` argument assert be a NodeElement `%s` given',
       typeof element
     )
-    should(isObject(styles),
-      'flexio-jshelpers:setStyles: `styles` argument should be an Object `%s` given',
+    assert(isObject(styles),
+      'flexio-jshelpers:setStyles: `styles` argument assert be an Object `%s` given',
       typeof styles
     )
 
@@ -125,12 +125,12 @@ class HyperFlex {
      * @returns {void}
      */
   _setAttributes(element, attributes) {
-    should(isNode(element),
-      'flexio-jshelpers:setAttributes: `element` argument should be a NodeElement `%s` given',
+    assert(isNode(element),
+      'flexio-jshelpers:setAttributes: `element` argument assert be a NodeElement `%s` given',
       typeof element
     )
-    should(isObject(attributes),
-      'flexio-jshelpers:setAttributes: `attributes` argument should be an Object `%s` given',
+    assert(isObject(attributes),
+      'flexio-jshelpers:setAttributes: `attributes` argument assert be an Object `%s` given',
       typeof attributes
     )
 

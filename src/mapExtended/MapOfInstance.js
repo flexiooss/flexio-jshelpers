@@ -2,8 +2,8 @@ import {
   MapExtended
 } from './MapExtended'
 import {
-  should
-} from '../should'
+  assert
+} from '../assert'
 
 class MapOfInstance extends MapExtended {
   constructor(classType) {
@@ -17,7 +17,7 @@ class MapOfInstance extends MapExtended {
 
   _constraint(value) {
     if (this._classType) {
-      should(value instanceof this._classType,
+      assert(value instanceof this._classType,
         'hotballoon:MapOfInstance:add require an argument instance of ̀ %s`, `%s` given',
         this._classType.constructor.name,
         value.constructor.name
