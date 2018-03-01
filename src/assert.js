@@ -11,7 +11,7 @@ class AssertionError extends Error {
 }
 
 export const assert = function(assert, message, ...messageArgs) {
-  if (typeof __ASSERT__ !== 'undefined') {
+  if (typeof window.__ASSERT__ !== 'undefined') {
     if (message === undefined) {
       throw new Error('`assert` function require an error message argument')
     }
