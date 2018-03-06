@@ -118,8 +118,19 @@ export const hasProperties = (object, properties) => {
   return true
 }
 
-export const cloneWithJsonMethod = (object) => {
-  return JSON.parse(JSON.stringify(object))
+export const cloneWithJsonMethod = (object, parseDate = false) => {
+  if (parseDate) {
+    const dateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/
+    return JSON.parse(JSON.stringify(object), (key, value) => {
+      if (dateFormat.test(value)) {
+        return new Date(value)
+      }
+
+      return value
+    })
+  } else {
+    return JSON.parse(JSON.stringify(object))
+  }
 }
 
 export const mergeWithoutPrototype = (target, ...sources) => {
