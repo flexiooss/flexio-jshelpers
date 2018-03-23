@@ -5,5 +5,8 @@
     "module": "index.es.js",
     "repository": "git@github.com:flexiooss/flexio-jshelpers.git",
     "author": "Thomas Chatelain (https://github.com/TomAchT)",
-    "license": "Apache-2.0"
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "eslint": "^4.18.2"
+    }
 }
