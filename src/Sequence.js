@@ -1,3 +1,4 @@
+'use strict'
 import {
   isNumber
 } from './is'
