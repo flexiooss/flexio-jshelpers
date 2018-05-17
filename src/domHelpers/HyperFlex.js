@@ -19,20 +19,21 @@ class HyperFlex {
   }
 
   /**
-     * Shortcut for document.createElement
-     * @param {String} querySelector : tag#myId.class1.class2
-     * @param {Object | String | Number | NodeElement} Attributes & styles |text | childNodes
-     *    - {Object} Attributes & styles { attribute: value,  ...,  style:{ rule: value, ... }}
-     *    - {String | Number} Text for append TextNode
-     *    - {NodeElement} NodeElement for append
-     * @returns {NodeElement}
-     */
+   * Shortcut for document.createElement
+   * @param {String} querySelector : tag#myId.class1.class2
+   * @param {Object | String | Number | NodeElement} Attributes & styles |text | childNodes
+   *    - {Object} Attributes & styles { attribute: value,  ...,  style:{ rule: value, ... }}
+   *    - {String | Number} Text for append TextNode
+   *    - {NodeElement} NodeElement for append
+   * @returns {NodeElement}
+   */
   _createElement() {
     const {
       tag,
       id,
       classList
     } = this._parseQuerySelector(this.querySelector)
+
     const element = document.createElement(tag)
     if (id) {
       element.id = id
@@ -46,11 +47,11 @@ class HyperFlex {
   }
 
   /**
-     *
-     * @param {String} querySelector : tag#myId.class1.class2...
-     * @returns {Object} { tag, id, classList }
-     *
-     */
+   *
+   * @param {String} querySelector : tag#myId.class1.class2...
+   * @returns {Object} { tag, id, classList }
+   *
+   */
   _parseQuerySelector(querySelector) {
     assert(isString(querySelector),
       'flexio-jshelpers:parseQuerySelector: `querySelector` argument assert be a String `%s` given',
@@ -72,11 +73,11 @@ class HyperFlex {
   }
 
   /**
-     *
-     * @param {NodeElement} element
-     * @param {...var} arguments
-     * @returns {NodeElement} element
-     */
+   *
+   * @param {NodeElement} element
+   * @param {...var} arguments
+   * @returns {NodeElement} element
+   */
   _parseArguments(element, ...args) {
     assert(isNode(element),
       'flexio-jshelpers:parseArguments: `element` argument assert be a NodeElement `%s` given',
@@ -97,11 +98,11 @@ class HyperFlex {
   }
 
   /**
-     *
-     * @param {NodeElement} element
-     * @param {Object} styles
-     * @returns {void}
-     */
+   *
+   * @param {NodeElement} element
+   * @param {Object} styles
+   * @returns {void}
+   */
 
   _setStyles(element, styles) {
     assert(isNode(element),
@@ -119,11 +120,11 @@ class HyperFlex {
   }
 
   /**
-     *
-     * @param {NodeElement} element
-     * @param {Object} attributes
-     * @returns {void}
-     */
+   *
+   * @param {NodeElement} element
+   * @param {Object} attributes
+   * @returns {void}
+   */
   _setAttributes(element, attributes) {
     assert(isNode(element),
       'flexio-jshelpers:setAttributes: `element` argument assert be a NodeElement `%s` given',

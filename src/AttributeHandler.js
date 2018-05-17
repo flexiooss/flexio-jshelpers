@@ -12,7 +12,7 @@ class AttributeHandler {
   constructor(element, scope) {
     assert(
       isNode(element),
-      'flexio-nodes-reconciliation:AttributeHandler:constructor: `element` argument assert be a NodeElement, `%s` given',
+      'flexio-jshelpers:AttributeHandler:constructor: `element` argument assert be a NodeElement, `%s` given',
       typeof element)
     this.element = element
     this.scope = scope
