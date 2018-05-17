@@ -6,10 +6,13 @@ import {
   assert
 } from './assert'
 
+const STEP = 1
+
 class Sequence {
-  constructor(prefix) {
-    this._prefix = prefix || ''
+  constructor(prefix = '') {
+    this._prefix = prefix
     var lastID = 0
+
     Object.defineProperty(this, '_lastID', {
       enumerable: false,
       configurable: false,
@@ -22,9 +25,12 @@ class Sequence {
     })
   }
 
-  getNewId() {
-    this._lastID++
-    return (this._prefix) ? this._prefix + this._lastID : this._lastID
+  /**
+   * @returns {String} id
+   */
+  nextID() {
+    this._lastID = this._lastID + STEP
+    return this._prefix + this._lastID
   }
 }
 
