@@ -6,4 +6,4 @@ export const shuffle = (a) => {
   return a
 }
 
-export const clone = (a) => a.slice()
+export const cloneArray = (a) => a.slice()

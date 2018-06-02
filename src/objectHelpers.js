@@ -14,7 +14,7 @@ export const sortObject = (object, callback) => {
       })
     }
   }
-  arrayTemp.sort(function(a, b) {
+  arrayTemp.sort((a, b) => {
     return callback(a, b)
   })
   let countOfArray = arrayTemp.length
@@ -36,7 +36,7 @@ export const filterObject = (object, callback) => {
 
 export const deepFreeze = (object) => {
   let propNames = Object.getOwnPropertyNames(object)
-  propNames.forEach(function(name) {
+  propNames.forEach((name) => {
     var prop = object[name]
     if (typeof prop === 'object' && prop !== null && !Object.isFrozen(prop)) {
       deepFreeze(prop)
@@ -46,7 +46,7 @@ export const deepFreeze = (object) => {
 }
 export const deepSeal = (object) => {
   let propNames = Object.getOwnPropertyNames(object)
-  propNames.forEach(function(name) {
+  propNames.forEach((name) => {
     var prop = object[name]
     if (typeof prop === 'object' && prop !== null && !Object.isSealed(prop)) {
       deepSeal(prop)
@@ -56,7 +56,7 @@ export const deepSeal = (object) => {
 }
 export const deepFreezeSeal = (object) => {
   let propNames = Object.getOwnPropertyNames(object)
-  propNames.forEach(function(name) {
+  propNames.forEach((name) => {
     var prop = object[name]
     if (typeof prop === 'object' && prop !== null && !Object.isSealed(prop) && !Object.isFrozen(prop)) {
       deepFreezeSeal(prop)
@@ -117,6 +117,8 @@ export const hasProperties = (object, properties) => {
   }
   return true
 }
+
+export const cloneObject = (object, parseDate = false) => cloneWithJsonMethod(object, parseDate)
 
 export const cloneWithJsonMethod = (object, parseDate = false) => {
   if (parseDate) {
