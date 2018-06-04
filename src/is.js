@@ -16,3 +16,4 @@ export const isPrimitive = (val) => {
     default: return val === null
   }
 }
+export const isIterable = (obj) => (obj == null) ? false : typeof obj[Symbol.iterator] === 'function'
