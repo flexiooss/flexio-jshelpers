@@ -118,6 +118,72 @@ export const hasProperties = (object, properties) => {
   return true
 }
 
+// function deepCopy(obj) {
+//   if (typeof obj === 'object') {
+//     return Object.keys(obj)
+//       .map(k => ({ [k]: deepCopy(obj[k]) }))
+//       .reduce((a, c) => Object.assign(a, c), {})
+//   } else if (Array.isArray(obj)) {
+//     return obj.map(deepCopy)
+//   }
+//   return obj
+// }
+
+// function deepCopy2(obj) {
+//   if (typeof obj === 'object') {
+//     return Object.getOwnPropertyNames(obj)
+//       .map(k => ({ [k]: deepCopy(obj[k]) }))
+//       .reduce((a, c) => Object.assign(a, c), {})
+//   } else if (Array.isArray(obj)) {
+//     return obj.map(deepCopy)
+//   }
+//   return obj
+// }
+
+// function clone2(obj) {
+//   if (obj === null || typeof obj !== "object") {
+//     return obj;
+//   }
+//   if (obj instanceof Date) {
+//     return new Date(obj.getTime());
+//   }
+//   if (Array.isArray(obj)) {
+//     var clonedArr = [];
+//     obj.forEach(function (element) {
+//       clonedArr.push(clone2(element))
+//     })
+//     return clonedArr
+//   }
+
+//   let clonedObj = new obj.constructor()
+//   for (var prop in obj) {
+//     if (obj.hasOwnProperty(prop)) {
+//       clonedObj[prop] = clone2(obj[prop])
+//     }
+//   }
+//   return clonedObj
+// }
+// function recursive(obj) {
+//   var clone, i;
+
+//   if (typeof obj !== 'object' || !obj)
+//     return obj;
+
+//   if ('[object Array]' === Object.prototype.toString.apply(obj)) {
+//     clone = [];
+//     var len = obj.length;
+//     for (i = 0; i < len; i++)
+//       clone[i] = recursive(obj[i]);
+//     return clone;
+//   }
+
+//   clone = {};
+//   for (i in obj)
+//     if (obj.hasOwnProperty(i))
+//       clone[i] = recursive(obj[i]);
+//   return clone;
+// }
+
 export const cloneObject = (object, parseDate = false) => cloneWithJsonMethod(object, parseDate)
 
 export const cloneWithJsonMethod = (object, parseDate = false) => {
