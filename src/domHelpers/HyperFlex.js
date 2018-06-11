@@ -139,7 +139,7 @@ class HyperFlex {
       let attribut = attributes[key]
       if (key === 'style') {
         this._setStyles(element, attribut)
-      } else {
+      } else if (attribut !== null) {
         element.setAttribute(key, attribut)
       }
     }
