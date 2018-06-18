@@ -222,14 +222,10 @@ export const deepMerge = (target, source) => {
   return target
 }
 
-export const valueByKeys = (input, keys, defaultReturn) => {
-  if (keys.length) {
-    const k = keys.shift()
-    if (typeof input[k] !== 'undefined') {
-      return valueByKeys(input[k], keys, defaultReturn)
-    } else {
-      return defaultReturn
-    }
+export const valueByKeys = (input, keys, defaultReturn = null) => {
+  if (keys.length && typeof input !== 'undefined') {
+    const v = input[keys.shift()]
+    return (typeof v !== 'undefined') ? valueByKeys(v, keys, defaultReturn) : defaultReturn
   }
   return input
 }
