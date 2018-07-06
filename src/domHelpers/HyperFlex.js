@@ -57,7 +57,7 @@ class HyperFlex {
       'flexio-jshelpers:parseQuerySelector: `querySelector` argument assert be a String `%s` given',
       typeof querySelector
     )
-    var re = '^([\\w]*)([#\\w\\d-_]*)?([.\\w\\d-_]*)?$'
+    var re = '^([\\w-]*)([#\\w\\d-_]*)?([.\\w\\d-_]*)?$'
     const matches = new RegExp(re, 'gi').exec(querySelector)
     const tag = matches[1]
     assert(!!tag,
