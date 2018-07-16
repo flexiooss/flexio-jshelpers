@@ -1,6 +1,8 @@
 export * from './src/assert'
 export * from './src/is'
 
+export * from './src/LogHandler'
+
 export * from './src/classHelpers'
 export * from './src/objectHelpers'
 export * from './src/stringHelpers'

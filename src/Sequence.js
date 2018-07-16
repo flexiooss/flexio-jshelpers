@@ -1,10 +1,6 @@
 'use strict'
-import {
-  isNumber
-} from './is'
-import {
-  assert
-} from './assert'
+import {isNumber} from './is'
+import {assert} from './assert'
 
 const STEP = 1
 
@@ -26,7 +22,7 @@ class Sequence {
   }
 
   /**
-   * @returns {String} id
+   * @return {string} id
    */
   nextID() {
     this._lastID = this._lastID + STEP
@@ -34,6 +30,4 @@ class Sequence {
   }
 }
 
-export {
-  Sequence
-}
+export { Sequence }
