@@ -1,5 +1,5 @@
 'use strict'
-import {isBoolean, isString} from './is'
+import {isBoolean} from './is'
 import {assert} from './assert'
 
 const COLORS = {
@@ -22,8 +22,6 @@ const COLORS = {
   orangeLight: '#FC902D'
 }
 
-const SIZES = {}
-
 class LogHandler {
   constructor(prefix = '', color = 'black') {
     this._prefix = prefix
@@ -32,7 +30,7 @@ class LogHandler {
      * @type {boolean}
      * @private
      */
-    this._debug = false
+    this._debug = typeof window.__DEBUG__ !== 'undefined'
     /**
      *
      * @type {string}
@@ -45,6 +43,15 @@ class LogHandler {
      * @private
      */
     this._logs = new Set()
+    this._color = color
+  }
+
+  /**
+   *
+   * @param {string} value
+   */
+  set color(value) {
+    this._color = COLORS[value] || '#000'
   }
 
   /**
