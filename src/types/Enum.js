@@ -1,7 +1,7 @@
 'use strict'
-import { assert } from '../assert'
-import { deepFreezeSeal } from '../objectHelpers'
-import { isIterable, isPrimitive } from '../is'
+import {assert} from '../assert'
+import {deepFreezeSeal} from '../objectHelpers'
+import {isIterable, isPrimitive} from '../is'
 
 export class Enum {
   constructor(items) {

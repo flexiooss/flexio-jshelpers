@@ -140,7 +140,7 @@ class LogHandler {
 
 export {LogHandler}
 
-const FONT_SIZE = 14
+const FONT_SIZE = 12
 
 class Log {
   constructor() {

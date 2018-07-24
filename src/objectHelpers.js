@@ -222,6 +222,13 @@ export const deepMerge = (target, source) => {
   return target
 }
 
+/**
+ *
+ * @param {Object} input
+ * @param {array<string>} keys
+ * @param {any} [defaultReturn=null]
+ * @return {*}
+ */
 export const valueByKeys = (input, keys, defaultReturn = null) => {
   if (keys.length && typeof input !== 'undefined') {
     const v = input[keys.shift()]
