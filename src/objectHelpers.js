@@ -23,7 +23,14 @@ export const sortObject = (object, callback) => {
   }
   return objectTemp
 }
-
+/**
+ *
+ * @param {Object} object
+ * @param {filterObjectCallback} callback
+ * @return {Object}
+ * @function
+ * @export
+ */
 export const filterObject = (object, callback) => {
   Object.keys(object).forEach((key) => {
     const value = object[key]
@@ -33,7 +40,19 @@ export const filterObject = (object, callback) => {
   })
   return object
 }
+/**
+ * @callback filterObjectCallback
+ * @param {*} value
+ * @param {string} key
+ * @param {Object} object
+ * @return {boolean}
+ */
 
+/**
+ *
+ * @param object
+ * @return {ReadonlyArray<any>}
+ */
 export const deepFreeze = (object) => {
   let propNames = Object.getOwnPropertyNames(object)
   propNames.forEach((name) => {
@@ -54,6 +73,13 @@ export const deepSeal = (object) => {
   })
   return Object.seal(object)
 }
+/**
+ *
+ * @param {object} object
+ * @return {ReadonlyObject<any>}
+ * @function
+ * @export
+ */
 export const deepFreezeSeal = (object) => {
   let propNames = Object.getOwnPropertyNames(object)
   propNames.forEach((name) => {
@@ -95,9 +121,16 @@ export const intersectObjectByKey = (object) => {
     }, {})
 }
 
+/**
+ *
+ * @param {object} object
+ * @return {*}
+ * @function
+ * @export
+ */
 export const maxKey = (object) => {
   var max
-  for (let key in object) {
+  for (const key in object) {
     max = (key > max) ? key : max
   }
   return max
@@ -106,11 +139,13 @@ export const maxKey = (object) => {
 /**
  *
  * @param {Object} object
- * @param {Array:String} properties
+ * @param {Array<String>} properties
  * @returns {boolean}
+ * @function
+ * @export
  */
 export const hasProperties = (object, properties) => {
-  for (let prop of properties) {
+  for (const prop of properties) {
     if (!object.hasOwnProperty(prop)) {
       return false
     }
@@ -205,6 +240,14 @@ export const mergeWithoutPrototype = (target, ...sources) => {
   return Object.assign(target, ...sources)
 }
 
+/**
+ *
+ * @param {object} target
+ * @param {object} source
+ * @return {object} target
+ * @function
+ * @export
+ */
 export const deepMerge = (target, source) => {
   for (let k in source) {
     const sourceValue = source[k]

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: is.js</title>
+    <title>JSDoc: Source: nodeHelpers.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: is.js</h1>
+    <h1 class="page-title">Source: nodeHelpers.js</h1>
 
     
 
@@ -26,110 +26,35 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- *
- * @param {any} a
- * @return {boolean}
- * @function
- * @export
- */
-export const isUndefined = a => typeof a === 'undefined'
+            <pre class="prettyprint source linenums"><code>import {assert} from './assert'
+import {isNode} from './is'
+
 /**
  *
- * @param {any} a
+ * @param {Node} node
+ * @param {number} [start=0]
+ * @param {number} [end=node.childNodes.length]
  * @return {boolean}
- * @function
- * @export
+ * @throws AssertionError
  */
-export const isNull = a => typeof a !== 'undefined' &amp;&amp; a === null
-/**
- *
- * @param {any} a
- * @return {boolean}
- * @function
- * @export
- */
-export const isString = a => typeof a === 'string'
-/**
- *
- * @param {any} a
- * @return {boolean}
- * @function
- * @export
- */
-export const isBoolean = a => typeof a === 'boolean'
-/**
- *
- * @param {any} a
- * @return {boolean}
- * @function
- * @export
- */
-export const isNumber = a => typeof a === 'number'
-/**
- *
- * @param {any} a
- * @return {boolean}
- * @function
- */
-export const isObject = a => a &amp;&amp; typeof a === 'object' &amp;&amp; !Array.isArray(a)
-/**
- *
- * @param {any} a
- * @return {boolean}
- * @function
- * @export
- */
-export const isFunction = a => typeof a === 'function'
-/**
- *
- * @param {any} a
- * @return {boolean}
- * @function
- * @export
- */
-export const isNode = a => isObject(a) &amp;&amp; isNumber(a.nodeType)
-/**
- *
- * @param {any} a
- * @return {boolean}
- * @function
- * @export
- */
-export const isNodeText = a => isObject(a) &amp;&amp; (a.nodeType === 3)
-/**
- *
- * @param {any} a
- * @return {boolean}
- * @function
- * @export
- */
-export const isPrimitive = a => {
-  switch (typeof a) {
-    case 'boolean':
-    case 'number':
-    case 'string':
-    case 'symbol':
-    case 'undefined': return true
-    default: return a === null
+export const removeChildNodes = (node, start, end) => {
+  assert(isNode(node),
+    'removeChildNodes: `node` argument assert be Node')
+  start = start || 0
+  end = end || node.childNodes.length
+
+  if (!node.hasChildNodes()) {
+    return false
+  }
+
+  assert(!!(start &lt;= end),
+    'removeChildNodes: `start` assert be less than `end`')
+
+  while (start &lt; end) {
+    node.removeChild(node.childNodes[start])
+    end--
   }
 }
-/**
- *
- * @param {any} a
- * @return {boolean}
- * @function
- * @export
- */
-export const isIterable = a => (a == null) ? false : typeof a[Symbol.iterator] === 'function'
-/**
- *
- * @param {any} a
- * @return {boolean}
- * @function
- * @export
- */
-export const isArray = a => Array.isArray(a)
 </code></pre>
         </article>
     </section>

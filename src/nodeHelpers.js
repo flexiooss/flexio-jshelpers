@@ -1,13 +1,17 @@
-import {
-  assert
-} from './assert'
-import {
-  isNode
-} from './is'
+import {assert} from './assert'
+import {isNode} from './is'
 
-export const removeChildren = (node, start, end) => {
+/**
+ *
+ * @param {Node} node
+ * @param {number} [start=0]
+ * @param {number} [end=node.childNodes.length]
+ * @return {boolean}
+ * @throws AssertionError
+ */
+export const removeChildNodes = (node, start, end) => {
   assert(isNode(node),
-    'removeChildren: `node` argument assert be Node')
+    'removeChildNodes: `node` argument assert be Node')
   start = start || 0
   end = end || node.childNodes.length
 
@@ -16,7 +20,7 @@ export const removeChildren = (node, start, end) => {
   }
 
   assert(!!(start <= end),
-    'removeChildren: `start` assert be less than `end`')
+    'removeChildNodes: `start` assert be less than `end`')
 
   while (start < end) {
     node.removeChild(node.childNodes[start])

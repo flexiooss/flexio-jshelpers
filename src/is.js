@@ -13,6 +13,14 @@ export const isUndefined = a => typeof a === 'undefined'
  * @function
  * @export
  */
+export const isNull = a => typeof a !== 'undefined' && a === null
+/**
+ *
+ * @param {any} a
+ * @return {boolean}
+ * @function
+ * @export
+ */
 export const isString = a => typeof a === 'string'
 /**
  *
