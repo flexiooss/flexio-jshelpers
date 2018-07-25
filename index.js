@@ -1,4 +1,4 @@
-export * from './src/assert'
+export {assert} from './src/assert'
 export * from './src/is'
 
 export * from './src/LogHandler'
