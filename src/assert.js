@@ -10,14 +10,14 @@ class AssertionError extends Error {
 }
 
 /**
- * Throw an Error if assertion not equal to true if global var __ASSERT__ is defined
+ * Throw an Error if assertion not equal to true, NODE_ENV = test | development
  * @param {boolean} assert
  * @param {string} message %s will be replaced by messageArgs
  * @param {...string} messageArgs
  * @function
  * @throws AssertionError
  */
-export const assert = (typeof window.__ASSERT__ !== 'undefined' || typeof process.env.__ASSERT__ !== 'undefined' || process.env.NODE_ENV === 'test') ? (assert, message, ...messageArgs) => {
+export const assert = (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') ? (assert, message, ...messageArgs) => {
   if (message === undefined) {
     throw new Error('`assert` function require an error message argument')
   }
