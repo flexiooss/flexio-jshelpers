@@ -3,6 +3,14 @@ import {
   isUndefined
 } from './is'
 
+/**
+ *
+ * @param {Object} object
+ * @param {function} callback
+ * @return {Object}
+ * @function
+ * @export
+ */
 export const sortObject = (object, callback) => {
   var arrayTemp = []
   var objectTemp = []
@@ -236,6 +244,14 @@ export const cloneWithJsonMethod = (object, parseDate = false) => {
   }
 }
 
+/**
+ *
+ * @param {Object} target
+ * @param {...Object} sources
+ * @return {Object}
+ * @function
+ * @export
+ */
 export const mergeWithoutPrototype = (target, ...sources) => {
   return Object.assign(target, ...sources)
 }
