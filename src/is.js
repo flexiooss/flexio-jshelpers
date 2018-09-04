@@ -13,7 +13,7 @@ export const isUndefined = a => typeof a === 'undefined'
  * @function
  * @export
  */
-export const isNull = a => typeof a !== 'undefined' && a === null
+export const isNull = a => !a && typeof a === 'object'
 /**
  *
  * @param {any} a
@@ -37,7 +37,7 @@ export const isBoolean = a => typeof a === 'boolean'
  * @function
  * @export
  */
-export const isNumber = a => typeof a === 'number'
+export const isNumber = a => typeof a === 'number' && !Number.isNaN(a)
 /**
  *
  * @param {any} a
@@ -82,8 +82,10 @@ export const isPrimitive = a => {
     case 'number':
     case 'string':
     case 'symbol':
-    case 'undefined': return true
-    default: return a === null
+    case 'undefined':
+      return true
+    default:
+      return a === null
   }
 }
 /**
@@ -102,3 +104,11 @@ export const isIterable = a => (a == null) ? false : typeof a[Symbol.iterator] =
  * @export
  */
 export const isArray = a => Array.isArray(a)
+/**
+ *
+ * @param {any} a
+ * @return {boolean}
+ * @function
+ * @export
+ */
+export const isRegex = a => isObject(a) && !isNull(a) && a instanceof RegExp
