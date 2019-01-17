@@ -27,3 +27,6 @@ export const matchAll = (regexp, str) => {
   })
   return matches.length ? matches : null
 }
+export const padLeft = (nr, n, str) => {
+    return Array(n-String(nr).length+1).join(str||'0')+nr;
+}
