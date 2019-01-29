@@ -120,6 +120,21 @@ export const deepKeyResolver = (object, keys, separator = '.') => {
   return ret
 }
 
+export const deepKeyAssigner = ( object, path, value, separator = '.' ) => {
+    var pathParts = path.split( separator );
+    var last = path.length;
+
+    if( pathParts.length === 1 ){
+        object[path] = value;
+    } else {
+        if( !object[pathParts[0]] ){
+            object[pathParts[0]] = {};
+        }
+        var start = pathParts[0].length +1;
+        deepKeyAssigner( object[pathParts[0]], path.substring( start , last ), value, separator );
+    }
+};
+
 export const intersectObjectByKey = (object) => {
   return Object.keys(object)
     .filter(key => this.storesName.includes(key))
