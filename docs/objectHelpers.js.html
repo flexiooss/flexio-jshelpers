@@ -31,6 +31,14 @@
   isUndefined
 } from './is'
 
+/**
+ *
+ * @param {Object} object
+ * @param {function} callback
+ * @return {Object}
+ * @function
+ * @export
+ */
 export const sortObject = (object, callback) => {
   var arrayTemp = []
   var objectTemp = []
@@ -103,8 +111,9 @@ export const deepSeal = (object) => {
 }
 /**
  *
- * @param {object} object
- * @return {ReadonlyObject&lt;any>}
+ * @param {Object} object
+ * @readonly
+ * @return {Object}
  * @function
  * @export
  */
@@ -124,7 +133,7 @@ export const deepFreezeSeal = (object) => {
  * @param {*} object
  * @param {string} keys
  * @param {string} separator
- * @returns false || value of Object[key]
+ * @returns {boolean|*}
  */
 export const deepKeyResolver = (object, keys, separator = '.') => {
   var arrayKeys = keys.split(separator)
@@ -138,6 +147,29 @@ export const deepKeyResolver = (object, keys, separator = '.') => {
     }
   } while (arrayKeys.length)
   return ret
+}
+
+/**
+ *
+ * @param {Object} object
+ * @param {string} path
+ * @param {*} value
+ * @param {string} separator
+ */
+export const deepKeyAssigner = (object, path, value, separator = '.') => {
+  var pathParts = path.split(separator)
+  var last = path.length
+
+  if (pathParts.length === 1) {
+    object[path] = value
+  } else {
+    if (!object[pathParts[0]]) {
+      object[pathParts[0]] = {}
+    }
+    var start = pathParts[0].length + 1
+    let subPath = path.substring(start, last)
+    deepKeyAssigner(object[pathParts[0]], subPath, value, separator)
+  }
 }
 
 export const intersectObjectByKey = (object) => {
@@ -264,6 +296,14 @@ export const cloneWithJsonMethod = (object, parseDate = false) => {
   }
 }
 
+/**
+ *
+ * @param {Object} target
+ * @param {...Object} sources
+ * @return {Object}
+ * @function
+ * @export
+ */
 export const mergeWithoutPrototype = (target, ...sources) => {
   return Object.assign(target, ...sources)
 }
@@ -317,13 +357,13 @@ export const valueByKeys = (input, keys, defaultReturn = null) => {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LogNode.html">LogNode</a></li><li><a href="LogObject.html">LogObject</a></li><li><a href="LogText.html">LogText</a></li></ul><h3>Global</h3><ul><li><a href="global.html#assert">assert</a></li><li><a href="global.html#deepFreeze">deepFreeze</a></li><li><a href="global.html#deepFreezeSeal">deepFreezeSeal</a></li><li><a href="global.html#deepKeyResolver">deepKeyResolver</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#filterObject">filterObject</a></li><li><a href="global.html#hasProperties">hasProperties</a></li><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isFunction">isFunction</a></li><li><a href="global.html#isIterable">isIterable</a></li><li><a href="global.html#isNode">isNode</a></li><li><a href="global.html#isNodeText">isNodeText</a></li><li><a href="global.html#isNull">isNull</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isPrimitive">isPrimitive</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#maxKey">maxKey</a></li><li><a href="global.html#removeChildNodes">removeChildNodes</a></li><li><a href="global.html#UID">UID</a></li><li><a href="global.html#valueByKeys">valueByKeys</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="EventHandlerBase.html">EventHandlerBase</a></li><li><a href="EventListenerFactory.listen.html">listen</a></li><li><a href="EventListenerFactory_EventListenerFactory.html">EventListenerFactory</a></li><li><a href="EventListenerParam.create.html">create</a></li><li><a href="EventListenerParam_EventListenerParam.html">EventListenerParam</a></li><li><a href="FlexEnum.html">FlexEnum</a></li><li><a href="LogNode.html">LogNode</a></li><li><a href="LogObject.html">LogObject</a></li><li><a href="LogText.html">LogText</a></li></ul><h3>Global</h3><ul><li><a href="global.html#assert">assert</a></li><li><a href="global.html#deepFreeze">deepFreeze</a></li><li><a href="global.html#deepFreezeSeal">deepFreezeSeal</a></li><li><a href="global.html#deepKeyAssigner">deepKeyAssigner</a></li><li><a href="global.html#deepKeyResolver">deepKeyResolver</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#filterObject">filterObject</a></li><li><a href="global.html#hasParentPrototypeName">hasParentPrototypeName</a></li><li><a href="global.html#hasProperties">hasProperties</a></li><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isFunction">isFunction</a></li><li><a href="global.html#isIterable">isIterable</a></li><li><a href="global.html#isNode">isNode</a></li><li><a href="global.html#isNodeText">isNodeText</a></li><li><a href="global.html#isNull">isNull</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isPrimitive">isPrimitive</a></li><li><a href="global.html#isRegex">isRegex</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#maxKey">maxKey</a></li><li><a href="global.html#mergeWithoutPrototype">mergeWithoutPrototype</a></li><li><a href="global.html#removeChildNodes">removeChildNodes</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortMap">sortMap</a></li><li><a href="global.html#sortObject">sortObject</a></li><li><a href="global.html#staticClassName">staticClassName</a></li><li><a href="global.html#toString">toString</a></li><li><a href="global.html#UID">UID</a></li><li><a href="global.html#valueByKeys">valueByKeys</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jul 25 2018 23:52:58 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Feb 11 2019 14:23:46 GMT+0100 (GMT+01:00)
 </footer>
 
 <script> prettyPrint(); </script>

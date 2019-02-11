@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: LogNode</title>
+    <title>JSDoc: Source: classHelpers.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,180 +17,40 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: LogNode</h1>
+    <h1 class="page-title">Source: classHelpers.js</h1>
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>LogNode<span class="signature">(node)</span><span class="type-signature"></span></h2>
-        
-    
-</header>
-
-<article>
-    <div class="container-overview">
-    
-        
-
-    
-
-    
-    <h4 class="name" id="LogNode"><span class="type-signature"></span>new LogNode<span class="signature">(node)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>node</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Node</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="LogHandler.js.html">LogHandler.js</a>, <a href="LogHandler.js.html#line222">line 222</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ *
+ * @param {Object} object
+ * @return {string}
+ */
+export const staticClassName = object => object.toString().split('(' || /s+/)[0].split(' ' || /s+/)[1]
+/**
+ *
+ * @param {Object} object
+ * @param {string} name
+ * @return {boolean}
+ */
+export const hasParentPrototypeName = (object, name) => {
+  var objectPrototype = Object.getPrototypeOf(object)
+  while (objectPrototype !== null) {
+    if (objectPrototype.constructor.name === name) {
+      return true
+    }
+    objectPrototype = Object.getPrototypeOf(objectPrototype)
+  }
+  return false
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

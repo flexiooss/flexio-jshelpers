@@ -28,7 +28,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>/**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -36,15 +36,15 @@
 export const isUndefined = a => typeof a === 'undefined'
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
  */
-export const isNull = a => typeof a !== 'undefined' &amp;&amp; a === null
+export const isNull = a => !a &amp;&amp; typeof a === 'object'
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -52,7 +52,7 @@ export const isNull = a => typeof a !== 'undefined' &amp;&amp; a === null
 export const isString = a => typeof a === 'string'
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -60,22 +60,22 @@ export const isString = a => typeof a === 'string'
 export const isBoolean = a => typeof a === 'boolean'
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
  */
-export const isNumber = a => typeof a === 'number'
+export const isNumber = a => typeof a === 'number' &amp;&amp; !Number.isNaN(a)
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  */
 export const isObject = a => a &amp;&amp; typeof a === 'object' &amp;&amp; !Array.isArray(a)
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -83,7 +83,7 @@ export const isObject = a => a &amp;&amp; typeof a === 'object' &amp;&amp; !Arra
 export const isFunction = a => typeof a === 'function'
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -91,7 +91,7 @@ export const isFunction = a => typeof a === 'function'
 export const isNode = a => isObject(a) &amp;&amp; isNumber(a.nodeType)
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -99,7 +99,7 @@ export const isNode = a => isObject(a) &amp;&amp; isNumber(a.nodeType)
 export const isNodeText = a => isObject(a) &amp;&amp; (a.nodeType === 3)
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -110,13 +110,15 @@ export const isPrimitive = a => {
     case 'number':
     case 'string':
     case 'symbol':
-    case 'undefined': return true
-    default: return a === null
+    case 'undefined':
+      return true
+    default:
+      return a === null
   }
 }
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -124,12 +126,20 @@ export const isPrimitive = a => {
 export const isIterable = a => (a == null) ? false : typeof a[Symbol.iterator] === 'function'
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
  */
 export const isArray = a => Array.isArray(a)
+/**
+ *
+ * @param {*} a
+ * @return {boolean}
+ * @function
+ * @export
+ */
+export const isRegex = a => isObject(a) &amp;&amp; !isNull(a) &amp;&amp; a instanceof RegExp
 </code></pre>
         </article>
     </section>
@@ -140,13 +150,13 @@ export const isArray = a => Array.isArray(a)
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="LogNode.html">LogNode</a></li><li><a href="LogObject.html">LogObject</a></li><li><a href="LogText.html">LogText</a></li></ul><h3>Global</h3><ul><li><a href="global.html#assert">assert</a></li><li><a href="global.html#deepFreeze">deepFreeze</a></li><li><a href="global.html#deepFreezeSeal">deepFreezeSeal</a></li><li><a href="global.html#deepKeyResolver">deepKeyResolver</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#filterObject">filterObject</a></li><li><a href="global.html#hasProperties">hasProperties</a></li><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isFunction">isFunction</a></li><li><a href="global.html#isIterable">isIterable</a></li><li><a href="global.html#isNode">isNode</a></li><li><a href="global.html#isNodeText">isNodeText</a></li><li><a href="global.html#isNull">isNull</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isPrimitive">isPrimitive</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#maxKey">maxKey</a></li><li><a href="global.html#removeChildNodes">removeChildNodes</a></li><li><a href="global.html#UID">UID</a></li><li><a href="global.html#valueByKeys">valueByKeys</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="EventHandlerBase.html">EventHandlerBase</a></li><li><a href="EventListenerFactory.listen.html">listen</a></li><li><a href="EventListenerFactory_EventListenerFactory.html">EventListenerFactory</a></li><li><a href="EventListenerParam.create.html">create</a></li><li><a href="EventListenerParam_EventListenerParam.html">EventListenerParam</a></li><li><a href="FlexEnum.html">FlexEnum</a></li><li><a href="LogNode.html">LogNode</a></li><li><a href="LogObject.html">LogObject</a></li><li><a href="LogText.html">LogText</a></li></ul><h3>Global</h3><ul><li><a href="global.html#assert">assert</a></li><li><a href="global.html#deepFreeze">deepFreeze</a></li><li><a href="global.html#deepFreezeSeal">deepFreezeSeal</a></li><li><a href="global.html#deepKeyAssigner">deepKeyAssigner</a></li><li><a href="global.html#deepKeyResolver">deepKeyResolver</a></li><li><a href="global.html#deepMerge">deepMerge</a></li><li><a href="global.html#filterObject">filterObject</a></li><li><a href="global.html#hasParentPrototypeName">hasParentPrototypeName</a></li><li><a href="global.html#hasProperties">hasProperties</a></li><li><a href="global.html#isArray">isArray</a></li><li><a href="global.html#isBoolean">isBoolean</a></li><li><a href="global.html#isFunction">isFunction</a></li><li><a href="global.html#isIterable">isIterable</a></li><li><a href="global.html#isNode">isNode</a></li><li><a href="global.html#isNodeText">isNodeText</a></li><li><a href="global.html#isNull">isNull</a></li><li><a href="global.html#isNumber">isNumber</a></li><li><a href="global.html#isObject">isObject</a></li><li><a href="global.html#isPrimitive">isPrimitive</a></li><li><a href="global.html#isRegex">isRegex</a></li><li><a href="global.html#isString">isString</a></li><li><a href="global.html#isUndefined">isUndefined</a></li><li><a href="global.html#maxKey">maxKey</a></li><li><a href="global.html#mergeWithoutPrototype">mergeWithoutPrototype</a></li><li><a href="global.html#removeChildNodes">removeChildNodes</a></li><li><a href="global.html#sleep">sleep</a></li><li><a href="global.html#sortMap">sortMap</a></li><li><a href="global.html#sortObject">sortObject</a></li><li><a href="global.html#staticClassName">staticClassName</a></li><li><a href="global.html#toString">toString</a></li><li><a href="global.html#UID">UID</a></li><li><a href="global.html#valueByKeys">valueByKeys</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Wed Jul 25 2018 23:52:58 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Feb 11 2019 14:23:46 GMT+0100 (GMT+01:00)
 </footer>
 
 <script> prettyPrint(); </script>

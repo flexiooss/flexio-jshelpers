@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: LogNode</title>
+    <title>JSDoc: Class: FlexEnum</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: LogNode</h1>
+    <h1 class="page-title">Class: FlexEnum</h1>
 
     
 
@@ -28,7 +28,11 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>LogNode<span class="signature">(node)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>FlexEnum<span class="signature">()</span><span class="type-signature"></span></h2>
+        
+            <div class="class-description">This is an abstract class that is not intended to be
+used directly. Extend it to turn your class into an enum
+(initialization is performed via `MyClass.initEnum()`).</div>
         
     
 </header>
@@ -39,70 +43,32 @@
         
 
     
-
-    
-    <h4 class="name" id="LogNode"><span class="type-signature"></span>new LogNode<span class="signature">(node)</span><span class="type-signature"></span></h4>
+    <h2>Constructor</h2>
     
 
     
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
+    <h4 class="name" id="FlexEnum"><span class="type-signature"></span>new FlexEnum<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
-        <tr>
-            
-                <td class="name"><code>node</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Node</span>
 
 
-            
-            </td>
+<div class="description">
+    `initEnum()` closes the class. Then calling this constructor
+throws an exception.
 
-            
+If your subclass has a constructor then you can control
+what properties are added to `this` via the argument you
+pass to `super()`. No arguments are fine, too.
+</div>
 
-            
 
-            <td class="description last"></td>
-        </tr>
 
-    
-    </tbody>
-</table>
+
+
+
+
 
 
 
@@ -138,7 +104,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="LogHandler.js.html">LogHandler.js</a>, <a href="LogHandler.js.html#line222">line 222</a>
+        <a href="types_Enumify.js.html">types/Enumify.js</a>, <a href="types_Enumify.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -183,6 +149,315 @@
 
     
 
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".enumValueOf"><span class="type-signature">(static) </span>enumValueOf<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Given the name of an enum constant, return its value.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="types_Enumify.js.html">types/Enumify.js</a>, <a href="types_Enumify.js.html#line80">line 80</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".initEnum"><span class="type-signature">(static) </span>initEnum<span class="signature">(arg)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Set up the enum, close the class.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>arg</code></td>
+            
+
+            <td class="type">
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Either an object whose properties provide the names
+and values (which must be mutable objects) of the enum constants.
+Or an Array whose elements are used as the names of the enum constants
+The values are create by instantiating the current class.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="types_Enumify.js.html">types/Enumify.js</a>, <a href="types_Enumify.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Default `toString()` method for enum constant.
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="types_Enumify.js.html">types/Enumify.js</a>, <a href="types_Enumify.js.html#line94">line 94</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     
 
     
