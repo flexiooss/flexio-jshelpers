@@ -1,6 +1,6 @@
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {string}
  * @function
  */

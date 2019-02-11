@@ -15,7 +15,15 @@ export class EventListenerParam {
     assert(isFunction(callback),
       'EventListenerParam:constructor: ̀`callback` property assert be Callable'
     )
+    /**
+     *
+     * @type {String}
+     */
     this.event = event
+    /**
+     *
+     * @type {function(payload<Object>, type<string>)}
+     */
     this.callback = callback
   }
 

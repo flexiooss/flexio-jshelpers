@@ -66,7 +66,7 @@ class LogHandler {
 
   /**
    *
-   * @param {text} text
+   * @param {string} text
    * @return {LogHandler}
    */
   log(text) {
@@ -152,7 +152,7 @@ class Log {
 
   /**
    *
-   * @return {any | null}
+   * @return {?*}
    */
   get content() {
     return this._content

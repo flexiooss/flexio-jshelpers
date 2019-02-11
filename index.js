@@ -1,6 +1,6 @@
-import {EventHandlerBase} from './src/EventHandler/EventHandlerBase'
-import {EventListenerFactory} from './src/EventHandler/EventListenerFactory'
-import {EventListenerParam} from './src/EventHandler/EventListenerParam'
+export {EventHandlerBase} from './src/EventHandler/EventHandlerBase'
+export {EventListenerFactory} from './src/EventHandler/EventListenerFactory'
+export {EventListenerParam} from './src/EventHandler/EventListenerParam'
 
 export {assert} from './src/assert'
 export * from './src/is'
@@ -25,5 +25,3 @@ export * from './src/sleep'
 export * from './src/Symbol'
 export * from './src/types/Enumify'
 export * from './src/types/FlexDate'
-
-export const EventHandler = {EventHandlerBase, EventListenerFactory, EventListenerParam}
