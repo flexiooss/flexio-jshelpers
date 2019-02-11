@@ -21,3 +21,5 @@ export * from './src/sleep'
 export * from './src/Symbol'
 export * from './src/types/Enumify'
 export * from './src/types/FlexDate'
+
+export * from './src/import'

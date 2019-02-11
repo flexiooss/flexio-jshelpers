@@ -131,7 +131,8 @@ export const deepKeyAssigner = ( object, path, value, separator = '.' ) => {
             object[pathParts[0]] = {};
         }
         var start = pathParts[0].length +1;
-        deepKeyAssigner( object[pathParts[0]], path.substring( start , last ), value, separator );
+        let subPath = path.substring( start , last );
+        deepKeyAssigner( object[pathParts[0]], subPath, value, separator );
     }
 };
 
