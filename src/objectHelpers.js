@@ -83,8 +83,9 @@ export const deepSeal = (object) => {
 }
 /**
  *
- * @param {object} object
- * @return {ReadonlyObject<any>}
+ * @param {Object} object
+ * @readonly
+ * @return {Object}
  * @function
  * @export
  */
@@ -104,7 +105,7 @@ export const deepFreezeSeal = (object) => {
  * @param {*} object
  * @param {string} keys
  * @param {string} separator
- * @returns false || value of Object[key]
+ * @returns {boolean|*}
  */
 export const deepKeyResolver = (object, keys, separator = '.') => {
   var arrayKeys = keys.split(separator)
@@ -120,21 +121,28 @@ export const deepKeyResolver = (object, keys, separator = '.') => {
   return ret
 }
 
-export const deepKeyAssigner = ( object, path, value, separator = '.' ) => {
-    var pathParts = path.split( separator );
-    var last = path.length;
+/**
+ *
+ * @param {Object} object
+ * @param {string} path
+ * @param {*} value
+ * @param {string} separator
+ */
+export const deepKeyAssigner = (object, path, value, separator = '.') => {
+  var pathParts = path.split(separator)
+  var last = path.length
 
-    if( pathParts.length === 1 ){
-        object[path] = value;
-    } else {
-        if( !object[pathParts[0]] ){
-            object[pathParts[0]] = {};
-        }
-        var start = pathParts[0].length +1;
-        let subPath = path.substring( start , last );
-        deepKeyAssigner( object[pathParts[0]], subPath, value, separator );
+  if (pathParts.length === 1) {
+    object[path] = value
+  } else {
+    if (!object[pathParts[0]]) {
+      object[pathParts[0]] = {}
     }
-};
+    var start = pathParts[0].length + 1
+    let subPath = path.substring(start, last)
+    deepKeyAssigner(object[pathParts[0]], subPath, value, separator)
+  }
+}
 
 export const intersectObjectByKey = (object) => {
   return Object.keys(object)

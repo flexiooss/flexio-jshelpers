@@ -3,4 +3,4 @@ yarn.lock
 yarn-error.log
 .eslintrc
 *.iml
-.idea
+.idea/

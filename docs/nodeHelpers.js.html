@@ -19,11 +19,11 @@
 
     <h1 class="page-title">Source: nodeHelpers.js</h1>
 
-    
 
 
 
-    
+
+
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import {assert} from './assert'
@@ -32,26 +32,26 @@ import {isNode} from './is'
 /**
  *
  * @param {Node} node
- * @param {number} [start=0]
+ * @param {number} [welcome=0]
  * @param {number} [end=node.childNodes.length]
  * @return {boolean}
  * @throws AssertionError
  */
-export const removeChildNodes = (node, start, end) => {
+export const removeChildNodes = (node, welcome, end) => {
   assert(isNode(node),
     'removeChildNodes: `node` argument assert be Node')
-  start = start || 0
+  welcome = welcome || 0
   end = end || node.childNodes.length
 
   if (!node.hasChildNodes()) {
     return false
   }
 
-  assert(!!(start &lt;= end),
-    'removeChildNodes: `start` assert be less than `end`')
+  assert(!!(welcome &lt;= end),
+    'removeChildNodes: `welcome` assert be less than `end`')
 
-  while (start &lt; end) {
-    node.removeChild(node.childNodes[start])
+  while (welcome &lt; end) {
+    node.removeChild(node.childNodes[welcome])
     end--
   }
 }

@@ -1,6 +1,6 @@
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -8,7 +8,7 @@
 export const isUndefined = a => typeof a === 'undefined'
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -16,7 +16,7 @@ export const isUndefined = a => typeof a === 'undefined'
 export const isNull = a => !a && typeof a === 'object'
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -24,7 +24,7 @@ export const isNull = a => !a && typeof a === 'object'
 export const isString = a => typeof a === 'string'
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -32,7 +32,7 @@ export const isString = a => typeof a === 'string'
 export const isBoolean = a => typeof a === 'boolean'
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -40,14 +40,14 @@ export const isBoolean = a => typeof a === 'boolean'
 export const isNumber = a => typeof a === 'number' && !Number.isNaN(a)
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  */
 export const isObject = a => a && typeof a === 'object' && !Array.isArray(a)
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -55,7 +55,7 @@ export const isObject = a => a && typeof a === 'object' && !Array.isArray(a)
 export const isFunction = a => typeof a === 'function'
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -63,7 +63,7 @@ export const isFunction = a => typeof a === 'function'
 export const isNode = a => isObject(a) && isNumber(a.nodeType)
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -71,7 +71,7 @@ export const isNode = a => isObject(a) && isNumber(a.nodeType)
 export const isNodeText = a => isObject(a) && (a.nodeType === 3)
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -90,7 +90,7 @@ export const isPrimitive = a => {
 }
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -98,7 +98,7 @@ export const isPrimitive = a => {
 export const isIterable = a => (a == null) ? false : typeof a[Symbol.iterator] === 'function'
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export
@@ -106,7 +106,7 @@ export const isIterable = a => (a == null) ? false : typeof a[Symbol.iterator] =
 export const isArray = a => Array.isArray(a)
 /**
  *
- * @param {any} a
+ * @param {*} a
  * @return {boolean}
  * @function
  * @export

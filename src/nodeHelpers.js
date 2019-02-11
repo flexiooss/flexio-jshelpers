@@ -20,7 +20,7 @@ export const removeChildNodes = (node, start, end) => {
   }
 
   assert(!!(start <= end),
-    'removeChildNodes: `start` assert be less than `end`')
+    'removeChildNodes: `welcome` assert be less than `end`')
 
   while (start < end) {
     node.removeChild(node.childNodes[start])
