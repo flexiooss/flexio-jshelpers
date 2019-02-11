@@ -1,6 +1,7 @@
 'use strict'
 import {isBoolean} from '../is'
 import {assert} from '../assert'
+import {UID} from '../uid'
 import {Sequence} from '../Sequence'
 import {EventListenerParam} from './EventListenerParam'
 
@@ -29,11 +30,11 @@ export class EventHandlerBase {
     this._isHandled = new Set()
     /**
      *
-     * @type {Set<string|Symbol>}
+     * @type {Set<String|Symbol>}
      * @protected
      */
     this._isPending = new Set()
-    this[_sequenceId_] = new Sequence(this.ID)
+    this[_sequenceId_] = new Sequence(UID())
 
     /**
      * @property {boolean}
@@ -89,9 +90,9 @@ export class EventHandlerBase {
 
   /**
    *
-   * @private
+   * @protected
    * @param {String|Symbol} event of Listener
-   * @param {String} token : token of listener
+   * @param {String|Symbol} token of Listener
    */
   _invokeCallback(event, token) {
     this._isPending.add(token)
@@ -136,7 +137,7 @@ export class EventHandlerBase {
   /**
    *
    * @param {String|Symbol} event of Listener
-   * @param {String} token : token
+   * @param {String} token
    * @throws AssertionError
    */
   removeEventListener(event, token) {
@@ -152,7 +153,7 @@ export class EventHandlerBase {
   /**
    *
    * @param {String|Symbol} event of Listener
-   * @param {String} token : token
+   * @param {String} token
    * @returns {boolean}
    */
   hasEventListener(event, token) {
