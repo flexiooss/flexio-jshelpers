@@ -16,7 +16,9 @@ export class EventHandlerBase {
   constructor() {
     /**
      *
-     * @type {Map<String|Symbol, Map<String|Symbol, CallableFunction >>}
+     * @type {Map<String|Symbol, Map<String|Symbol, {
+        callback: CallableFunction
+      } >>}
      * @protected
      */
     this._listeners = new Map()

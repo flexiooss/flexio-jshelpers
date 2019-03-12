@@ -1,14 +1,14 @@
 import {EventListenerParam} from './EventListenerParam'
 
-export class EventListenerFactory {
+export class EventListenerBuilder {
   /**
    *
-   * @param {String} event
+   * @param {String|Symbol} event
    */
   constructor(event = '') {
     /**
      *
-     * @type {string}
+     * @type {String|Symbol}
      * @protected
      */
     this._event = event
@@ -23,8 +23,8 @@ export class EventListenerFactory {
 
   /**
    *
-   * @param {String} event
-   * @return {EventListenerFactory}
+   * @param {String|Symbol} event
+   * @return {EventListenerBuilder}
    * @constructor
    */
   static listen(event) {
@@ -34,7 +34,7 @@ export class EventListenerFactory {
   /**
    *
    * @param {Function} clb
-   * @return {EventListenerFactory}
+   * @return {EventListenerBuilder}
    */
   callback(clb) {
     this._callback = clb
