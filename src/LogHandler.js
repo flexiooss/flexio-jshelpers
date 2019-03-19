@@ -27,19 +27,19 @@ class LogHandler {
     this._prefix = prefix
     /**
      *
-     * @type {boolean}
+     * @params {boolean}
      * @private
      */
     this._debug = typeof window.__DEBUG__ !== 'undefined'
     /**
      *
-     * @type {string}
+     * @params {string}
      * @private
      */
     this._color = COLORS[color] || '#000'
     /**
      *
-     * @type {Set<any>}
+     * @params {Set<any>}
      * @private
      */
     this._logs = new Set()

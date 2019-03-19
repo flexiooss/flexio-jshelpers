@@ -16,7 +16,7 @@ export class EventHandlerBase {
   constructor() {
     /**
      *
-     * @type {Map<String|Symbol, Map<String|Symbol, {
+     * @params {Map<String|Symbol, Map<String|Symbol, {
         callback: CallableFunction
       } >>}
      * @protected
@@ -26,13 +26,13 @@ export class EventHandlerBase {
     this._pendingPayload = new Map()
     /**
      *
-     * @type {Set<string|Symbol>}
+     * @params {Set<string|Symbol>}
      * @protected
      */
     this._isHandled = new Set()
     /**
      *
-     * @type {Set<String|Symbol>}
+     * @params {Set<String|Symbol>}
      * @protected
      */
     this._isPending = new Set()

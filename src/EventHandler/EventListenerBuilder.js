@@ -8,13 +8,13 @@ export class EventListenerBuilder {
   constructor(event = '') {
     /**
      *
-     * @type {String|Symbol}
+     * @params {String|Symbol}
      * @protected
      */
     this._event = event
     /**
      *
-     * @type {Function}
+     * @params {Function}
      * @callback
      * @protected
      */

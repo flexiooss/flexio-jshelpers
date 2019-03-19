@@ -19,11 +19,11 @@
 
     <h1 class="page-title">Source: EventHandler/EventListenerParam.js</h1>
 
-    
 
 
 
-    
+
+
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import {isFunction} from '../is'
@@ -34,7 +34,7 @@ export class EventListenerParam {
   /**
    *
    * @param {String} event
-   * @param {function(payload&lt;Object>, type&lt;string>)} callback
+   * @param {function(payload&lt;Object>, params&lt;string>)} callback
    */
   constructor(event, callback) {
     assert(!!event,
@@ -45,12 +45,12 @@ export class EventListenerParam {
     )
     /**
      *
-     * @type {String}
+     * @params {String}
      */
     this.event = event
     /**
      *
-     * @type {function(payload&lt;Object>, type&lt;string>)}
+     * @params {function(payload&lt;Object>, params&lt;string>)}
      */
     this.callback = callback
   }
@@ -58,7 +58,7 @@ export class EventListenerParam {
   /**
    *
    * @param {String} event
-   * @param {function(payload&lt;Object>, type&lt;string>)} callback
+   * @param {function(payload&lt;Object>, params&lt;string>)} callback
    * @constructor
    * @readonly {EventListenerParam}
    */

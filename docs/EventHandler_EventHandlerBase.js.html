@@ -19,11 +19,11 @@
 
     <h1 class="page-title">Source: EventHandler/EventHandlerBase.js</h1>
 
-    
 
 
 
-    
+
+
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>'use strict'
@@ -43,7 +43,7 @@ export class EventHandlerBase {
   constructor() {
     /**
      *
-     * @type {Map&lt;String|Symbol, Map&lt;String|Symbol, CallableFunction >>}
+     * @params {Map&lt;String|Symbol, Map&lt;String|Symbol, CallableFunction >>}
      * @protected
      */
     this._listeners = new Map()
@@ -51,13 +51,13 @@ export class EventHandlerBase {
     this._pendingPayload = new Map()
     /**
      *
-     * @type {Set&lt;string|Symbol>}
+     * @params {Set&lt;string|Symbol>}
      * @protected
      */
     this._isHandled = new Set()
     /**
      *
-     * @type {Set&lt;string|Symbol>}
+     * @params {Set&lt;string|Symbol>}
      * @protected
      */
     this._isPending = new Set()

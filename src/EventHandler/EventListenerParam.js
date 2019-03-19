@@ -17,12 +17,12 @@ export class EventListenerParam {
     )
     /**
      *
-     * @type {String}
+     * @params {String}
      */
     this.event = event
     /**
      *
-     * @type {function(payload<Object>, type<string>)}
+     * @params {function(payload<Object>, type<string>)}
      */
     this.callback = callback
   }
