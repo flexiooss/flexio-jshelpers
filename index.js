@@ -2,7 +2,7 @@ export {EventHandlerBase} from './src/EventHandler/EventHandlerBase'
 export {EventListenerBuilder} from './src/EventHandler/EventListenerBuilder'
 export {EventListenerParam} from './src/EventHandler/EventListenerParam'
 
-export {assert} from './src/assert'
+export * from './src/assert'
 export * from './src/is'
 
 export * from './src/LogHandler'
