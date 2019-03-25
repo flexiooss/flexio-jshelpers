@@ -112,3 +112,11 @@ export const isArray = a => Array.isArray(a)
  * @export
  */
 export const isRegex = a => isObject(a) && !isNull(a) && a instanceof RegExp
+/**
+ *
+ * @param {*} a
+ * @function
+ * @return {boolean}
+ * @export
+ */
+export const isClass = a => typeof a === 'function' && /^class\s/.test(Function.prototype.toString.call(a))
