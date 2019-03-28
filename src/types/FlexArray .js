@@ -1,7 +1,7 @@
 /**
  * @template TYPE, TYPE_OUT
  */
-class ExtendedArray extends Array {
+class FlexArray extends Array {
   /**
    *
    * @param {...TYPE} args
