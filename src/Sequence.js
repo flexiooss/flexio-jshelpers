@@ -1,14 +1,10 @@
 'use strict'
-import {
-  isNumber
-} from './is'
-import {
-  assert
-} from './assert'
+import {isNumber} from './is'
+import {assert} from './assert'
 
 const STEP = 1
 
-class Sequence {
+export class Sequence {
   constructor(prefix = '') {
     this._prefix = prefix
     var lastID = 0
@@ -26,14 +22,10 @@ class Sequence {
   }
 
   /**
-   * @returns {String} id
+   * @return {string} id
    */
   nextID() {
     this._lastID = this._lastID + STEP
     return this._prefix + this._lastID
   }
-}
-
-export {
-  Sequence
 }
