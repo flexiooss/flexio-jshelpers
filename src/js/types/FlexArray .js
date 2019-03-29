@@ -4,7 +4,7 @@
 export class FlexArray extends Array {
   /**
    *
-   * @param {...TYPE} args
+   * @param {...<TYPE>} args
    */
   constructor(...args) {
     super(...args)

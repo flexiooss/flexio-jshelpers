@@ -1,22 +1,26 @@
+/*
+global Headers
+*/
 import {assertType} from '../assert'
 import {isArray, isNull, isNumber, isString} from '../is'
 import {deepFreezeSeal} from '../objectHelpers'
+import {StringArray} from '../types/StringArray'
 
 /**
  * @implements {ResponseDelegate}
  */
-class FetchResponseDelegate {
+export class FetchResponseDelegate {
   /**
    *
    * @param {?number} [code=null]
    * @param {?string} [body=null]
-   * @param {Array<string>} [headers=[]]
+   * @param {Headers} headers
    * @readonly
    */
   constructor(code = null, body = null, headers = []) {
     assertType(isNull(code) || isNumber(code), 'FetchResponseDelegate: `code` should be a number')
     assertType(isNull(body) || isString(body), 'FetchResponseDelegate: `body` should be a string')
-    assertType(isArray(headers), 'FetchResponseDelegate: `headers` should be an array')
+    assertType(headers instanceof Headers, 'FetchResponseDelegate: `headers` should be a Headers')
     /**
      *
      * @type {?number}
@@ -31,7 +35,7 @@ class FetchResponseDelegate {
     this.__body = body
     /**
      *
-     * @type {Array<string>}
+     * @type {Headers}
      * @private
      */
     this.__headers = headers
@@ -59,10 +63,7 @@ class FetchResponseDelegate {
    * @return {?string}
    */
   header(name) {
-    if (name in this.__headers) {
-      return this.__headers[name]
-    }
-    return null
+    return this.__headers.get(name)
   }
 
   /**
