@@ -26,4 +26,7 @@ export * from './src/js/Symbol'
 export * from './src/js/types/Enumify'
 export * from './src/js/types/FlexDate'
 
+export * from './src/js/types/FlexArray'
+export * from './src/js/types/StringArray'
+
 export * from './src/js/import'
