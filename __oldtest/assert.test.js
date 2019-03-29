@@ -1,4 +1,4 @@
-import {assert} from '../src/assert'
+import {assert} from '../src/js/assert'
 
 test('Should doing nothing without environment', () => {
   expect.anything(() => {

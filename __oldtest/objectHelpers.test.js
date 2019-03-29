@@ -1,4 +1,4 @@
-import {deepKeyAssigner} from "../src/objectHelpers";
+import {deepKeyAssigner} from "../src/js/objectHelpers";
 
 test( 'Should assign property with deep path', () => {
     var object= {};

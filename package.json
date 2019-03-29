@@ -7,32 +7,25 @@
   "repository": "git@github.com:flexiooss/flexio-jshelpers.git",
   "author": "Thomas Chatelain (https://github.com/TomAchT)",
   "license": "Apache-2.0",
-  "scripts": {
-    "doc": "yarn jsdoc -d ./docs/ -p -r ./src/ ",
-    "test": "jest"
-  },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.0.3",
-    "babel-jest": "^23.4.0",
-    "babel-plugin-transform-builtin-extend": "^1.1.2",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-jest": "^23.2.0",
-    "babel-preset-stage-0": "^6.24.1",
-    "eslint": "^5.2.0",
+    "eslint": "^5.13.0",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-plugin-html": "^4.0.1",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jest": "^21.18.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "jest": "^23.4.1",
-    "jsdoc": "^3.5.5",
-    "regenerator-runtime": "^0.12.0"
+    "regenerator-runtime": "^0.12.0",
+    "code-altimeter-js": "https://github.com/flexiooss/code-altimeter-js.git"
+  },
+  "hotballoon-shed": {
+    "build": {
+      "builder": "webpack4"
+    },
+    "test": {
+      "tester": "code-altimeter-js",
+      "path": "src/test"
+    }
   }
 }

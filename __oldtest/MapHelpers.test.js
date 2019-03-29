@@ -1,4 +1,4 @@
-import {sortMap} from '../src/MapHelpers'
+import {sortMap} from '../src/js/MapHelpers'
 
 test('sortMap should sort', () => {
   const map1 = new Map([['10', {v: 10}], ['5', {v: 5}], ['30', {v: 30}], ['20', {v: 20}]])
