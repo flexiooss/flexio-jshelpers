@@ -1,10 +1,9 @@
 /*
 global Headers
 */
-import {assertType} from '../assert'
-import {isArray, isNull, isNumber, isString} from '../is'
-import {deepFreezeSeal} from '../objectHelpers'
-import {StringArray} from '../types/StringArray'
+import {assertType} from '../../assert'
+import {isNull, isNumber, isString} from '../../is'
+import {deepFreezeSeal} from '../../objectHelpers'
 
 /**
  * @implements {ResponseDelegate}
@@ -14,13 +13,13 @@ export class FetchResponseDelegate {
    *
    * @param {?number} [code=null]
    * @param {?string} [body=null]
-   * @param {Headers} headers
+   * @param {?Headers} [headers=null]
    * @readonly
    */
-  constructor(code = null, body = null, headers = []) {
+  constructor(code = null, body = null, headers = null) {
     assertType(isNull(code) || isNumber(code), 'FetchResponseDelegate: `code` should be a number')
     assertType(isNull(body) || isString(body), 'FetchResponseDelegate: `body` should be a string')
-    assertType(headers instanceof Headers, 'FetchResponseDelegate: `headers` should be a Headers')
+    assertType(isNull(headers) || headers instanceof Headers, 'FetchResponseDelegate: `headers` should be a Headers')
     /**
      *
      * @type {?number}

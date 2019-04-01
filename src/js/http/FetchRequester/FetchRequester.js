@@ -1,12 +1,13 @@
-/* global fetch, Headers */
+/* global fetch, Headers,Request,URL */
+import {InitRequestBuilder} from './InitRequestBuilder'
+import {assertType} from '../../assert'
+import {isString, isNull} from '../../is'
+import {StringArray} from '../../types/StringArray'
+import {FetchResponseDelegate} from './FetchResponseDelegate'
+
 /**
  * @implements {HttpRequester}
  */
-import {assertType} from '../assert'
-import {isString, isNull} from '../is'
-import {StringArray} from '../types/StringArray'
-import {FetchResponseDelegate} from 'FetchResponseDelegate'
-
 export class FetchRequester {
   constructor() {
     /**
@@ -17,22 +18,27 @@ export class FetchRequester {
     this.__headers = new Headers()
     /**
      *
-     * @type {?string}
+     * @type {?URL}
      * @private
      */
     this.__path = null
     /**
      *
-     * @type {Map<string, (?string|?StringArray)>}
+     * @type {URLSearchParams}
      * @private
      */
-    this.__parameters = new Map()
+    this.__parameters = new URLSearchParams()
   }
 
   /**
    * @return {ResponseDelegate}
    */
   get() {
+    return this.__exec(
+      this.__buildRequest(
+        this.__buildInit('GET')
+      )
+    )
   }
 
   /**
@@ -41,6 +47,14 @@ export class FetchRequester {
    * @return {ResponseDelegate}
    */
   post(contentType = null, body = null) {
+    if (!isNull(contentType)) {
+      this.header('content-type', contentType)
+    }
+    return this.__exec(
+      this.__buildRequest(
+        this.__buildInit('POST').body(body)
+      )
+    )
   }
 
   /**
@@ -49,6 +63,14 @@ export class FetchRequester {
    * @return {ResponseDelegate}
    */
   put(contentType = null, body = null) {
+    if (!isNull(contentType)) {
+      this.header('content-type', contentType)
+    }
+    return this.__exec(
+      this.__buildRequest(
+        this.__buildInit('PUT').body(body)
+      )
+    )
   }
 
   /**
@@ -57,18 +79,36 @@ export class FetchRequester {
    * @return {ResponseDelegate}
    */
   patch(contentType = null, body = null) {
+    if (!isNull(contentType)) {
+      this.header('content-type', contentType)
+    }
+    return this.__exec(
+      this.__buildRequest(
+        this.__buildInit('PATCH').body(body)
+      )
+    )
   }
 
   /**
    * @return {ResponseDelegate}
    */
   delete() {
+    return this.__exec(
+      this.__buildRequest(
+        this.__buildInit('DELETE')
+      )
+    )
   }
 
   /**
    * @return {ResponseDelegate}
    */
   head() {
+    return this.__exec(
+      this.__buildRequest(
+        this.__buildInit('HEAD')
+      )
+    )
   }
 
   /**
@@ -89,7 +129,10 @@ export class FetchRequester {
    */
   arrayParameter(name, values) {
     assertType(isString(name), 'FetchRequester:arrayParameter: name should be string or null')
-    this.__parameters.set(name, new StringArray(...values))
+    this.__parameters.delete(name)
+    for (const v in new StringArray(...values)) {
+      this.__parameters.append(name, v)
+    }
     return this
   }
 
@@ -121,17 +164,45 @@ export class FetchRequester {
    */
   path(path) {
     assertType(isString(path) || isNull(path), 'FetchRequester:path: path should be string or null')
-    this.__path = path
+    this.__path = new URL(path)
     return this
   }
 
-  async __exec() {
-    const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
-    console.dir(response)
-    const json = await response.text()
-    console.log(json)
-    return new FetchResponseDelegate()
-
+  /**
+   *@param {Request} request
+   * @return {FetchResponseDelegate}
+   * @private
+   */
+  async __exec(request) {
+    const response = await fetch(request)
+    const body = await response.text()
+    return new FetchResponseDelegate(response.status, body, response.headers)
   }
 
+  /**
+   * @param {InitRequestBuilder} init
+   * @return {Request}
+   * @private
+   */
+  __buildRequest(init) {
+    if (this.__parameters.toString().length) {
+      return new Request(new URL(this.__path.href + '?' + this.__parameters.toString()), init.build())
+    } else {
+      return new Request(this.__path, init.build())
+    }
+  }
+
+  /**
+   *
+   * @param {string} method
+   * @return {InitRequestBuilder}
+   * @private
+   */
+  __buildInit(method) {
+    return new InitRequestBuilder()
+      .method(method)
+      .cache('no-cache')
+      .mode('cors')
+      .headers(this.__headers)
+  }
 }
