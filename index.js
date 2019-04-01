@@ -20,13 +20,16 @@ export * from './src/js/mapExtended/MapExtended'
 export * from './src/js/mapExtended/MapOfArray'
 export * from './src/js/mapExtended/MapOfInstance'
 export * from './src/js/mapExtended/MapOfObject'
+
 export * from './src/js/uid'
 export * from './src/js/sleep'
 export * from './src/js/Symbol'
-export * from './src/js/types/Enumify'
+export * from './src/js/types/FlexEnum'
 export * from './src/js/types/FlexDate'
 
 export * from './src/js/types/FlexArray'
 export * from './src/js/types/StringArray'
 
 export * from './src/js/import'
+
+export * from './src/js/http/FetchRequester/FetchRequester'

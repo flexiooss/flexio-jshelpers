@@ -46,7 +46,7 @@ export class FlexArray extends Array {
    * @param {TYPE} v
    * @param {number} i
    * @param {number} o
-   * @returns {Array<TYPE>}
+   * @return {Array<TYPE>}
    */
   fill(v, i, o) {
     this._validate(v)
@@ -64,7 +64,7 @@ export class FlexArray extends Array {
 
   /**
    *
-   * @returns {TYPE}
+   * @return {TYPE}
    */
   last() {
     return this[this.length - 1]
@@ -73,8 +73,8 @@ export class FlexArray extends Array {
   /**
    *
    * @param {Array<TYPE_OUT>} init
-   * @param {ExtendedArray~mapToClb<TYPE>} clb
-   * @returns {Array<TYPE_OUT>}
+   * @param {FlexArray~mapToClb<TYPE>} clb
+   * @return {Array<TYPE_OUT>}
    */
   mapTo(init, clb) {
     this.forEach((v) => {
@@ -85,7 +85,7 @@ export class FlexArray extends Array {
 
   /**
    *
-   * @param {ExtendedArray~mapToClb<TYPE>} clb
+   * @param {FlexArray~mapToClb<TYPE>} clb
    * @return {Array}
    */
   mapToArray(clb) {
@@ -94,7 +94,7 @@ export class FlexArray extends Array {
 
   /**
    * @template TYPE
-   * @callback ExtendedArray~mapToClb<TYPE>
+   * @callback FlexArray~mapToClb<TYPE>
    * @param {TYPE} v
    * @return {*}
    */
