@@ -1,4 +1,4 @@
-import {assert} from './assert'
+import {assertType, assert} from './assert'
 import {isNode} from './is'
 
 /**
@@ -10,7 +10,7 @@ import {isNode} from './is'
  * @throws AssertionError
  */
 export const removeChildNodes = (node, start, end) => {
-  assert(isNode(node),
+  assertType(isNode(node),
     'removeChildNodes: `node` argument assert be Node')
   start = start || 0
   end = end || node.childNodes.length
