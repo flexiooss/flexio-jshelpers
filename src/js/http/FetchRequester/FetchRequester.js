@@ -1,4 +1,4 @@
-/* global fetch, Headers,Request,URL */
+/* global fetch, Headers,Request,URL,Response */
 import {InitRequestBuilder} from './InitRequestBuilder'
 import {assertType} from '../../assert'
 import {isString, isNull} from '../../is'
@@ -176,7 +176,7 @@ export class FetchRequester {
   async __exec(request) {
     const response = await fetch(request)
     const body = await response.text()
-    return new FetchResponseDelegate(response.status, body, response.headers)
+    return this.__buildResponse(response, body)
   }
 
   /**
@@ -204,5 +204,17 @@ export class FetchRequester {
       .cache('no-cache')
       .mode('cors')
       .headers(this.__headers)
+  }
+
+  /**
+   *
+   * @param {Response} response
+   * @param {?string} body
+   * @return {FetchResponseDelegate}
+   * @private
+   */
+  __buildResponse(response, body) {
+    assertType(response instanceof Response, 'FetchRequester:__buildResponse `response` should be a Response')
+    return new FetchResponseDelegate(response.status, body, response.headers)
   }
 }
