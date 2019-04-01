@@ -1,4 +1,4 @@
-import {FlexArray} from 'FlexArray '
+import {FlexArray} from './FlexArray'
 import {isNull, isString} from '../is'
 import {assertType} from '../assert'
 

@@ -1,5 +1,5 @@
 /* global runTest */
-import {FlexDate, FlexTime, FlexDateTime, FlexZonedDateTime} from '../js/types/FlexDate'
+import {FlexDate, FlexTime, FlexDateTime, FlexZonedDateTime} from '../../js/types/FlexDate'
 import {TestCase} from 'code-altimeter-js'
 
 const assert = require('assert')
