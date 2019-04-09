@@ -31,5 +31,3 @@ export * from './src/js/types/FlexArray'
 export * from './src/js/types/StringArray'
 
 export * from './src/js/import'
-
-export * from './src/js/http/FetchRequester/FetchRequester'
