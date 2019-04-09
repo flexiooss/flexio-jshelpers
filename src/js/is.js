@@ -103,7 +103,7 @@ export const isIterable = a => (a == null) ? false : typeof a[Symbol.iterator] =
  * @function
  * @export
  */
-export const isArray = a => Array.isArray(a)
+export const isArray = a => Array.isArray(a) || a instanceof Array
 /**
  *
  * @param {*} a
