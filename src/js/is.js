@@ -113,7 +113,7 @@ export const isSymbol = a => typeof a === 'symbol'
  * @function
  * @export
  */
-export const isArray = a => Array.isArray(a)
+export const isArray = a => Array.isArray(a) || a instanceof Array
 /**
  *
  * @param {*} a
