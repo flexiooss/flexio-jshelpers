@@ -29,6 +29,7 @@ export * from './src/js/types/FlexDate'
 
 export * from './src/js/types/FlexArray'
 export * from './src/js/types/StringArray'
+export * from './src/js/types/SymbolStringArray'
 
 export * from './src/js/import'
 

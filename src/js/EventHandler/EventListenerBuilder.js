@@ -1,21 +1,21 @@
 import {EventListenerParam} from './EventListenerParam'
+import {SymbolStringArray} from '../types/SymbolStringArray'
 
 export class EventListenerBuilder {
   /**
    *
-   * @param {String|Symbol} event
+   * @param {SymbolStringArray} events
    */
-  constructor(event = '') {
+  constructor(events) {
     /**
      *
-     * @params {String|Symbol}
+     * @type {SymbolStringArray}
      * @protected
      */
-    this._event = event
+    this._events = events
     /**
      *
-     * @params {Function}
-     * @callback
+     * @type {EventHandlerBase~eventClb}
      * @protected
      */
     this._callback = () => true
@@ -23,17 +23,17 @@ export class EventListenerBuilder {
 
   /**
    *
-   * @param {String|Symbol} event
+   * @param {...(String|Symbol)} events
    * @return {EventListenerBuilder}
    * @constructor
    */
-  static listen(event) {
-    return new this(event)
+  static listen(...events) {
+    return new this(new SymbolStringArray(...events))
   }
 
   /**
    *
-   * @param {Function} clb
+   * @param {EventHandlerBase~eventClb} clb
    * @return {EventListenerBuilder}
    */
   callback(clb) {
@@ -47,7 +47,7 @@ export class EventListenerBuilder {
    */
   build() {
     return EventListenerParam.create(
-      this._event,
+      this._events,
       this._callback
     )
   }

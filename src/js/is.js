@@ -96,6 +96,16 @@ export const isPrimitive = a => {
  * @export
  */
 export const isIterable = a => (a == null) ? false : typeof a[Symbol.iterator] === 'function'
+
+/**
+ *
+ * @param {*} a
+ * @return {boolean}
+ * @function
+ * @export
+ */
+export const isSymbol = a => typeof a === 'symbol'
+
 /**
  *
  * @param {*} a

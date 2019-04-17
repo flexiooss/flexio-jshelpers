@@ -66,9 +66,36 @@ export class FlexArray extends Array {
    *
    * @return {TYPE}
    */
+  first() {
+    return this.get(0)
+  }
+
+  /**
+   *
+   * @return {TYPE}
+   */
   last() {
     return this[this.length - 1]
   }
+
+  /**
+   *
+   * @param {FlexArray~filter<TYPE>} callback
+   * @param thisArg
+   * @return {any[]}
+   */
+  filter(callback, thisArg) {
+    return super.filter(callback, thisArg)
+  }
+
+  /**
+   * @template TYPE
+   * @callback FlexArray~filter<TYPE>
+   * @param {TYPE} current
+   * @param {number} index
+   * @param {this} all
+   * @return {boolean}
+   */
 
   /**
    *

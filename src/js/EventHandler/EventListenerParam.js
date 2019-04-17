@@ -1,40 +1,41 @@
 import {isFunction} from '../is'
 import {assert} from '../assert'
 import {deepFreezeSeal} from '../objectHelpers'
+import {SymbolStringArray} from '../types/SymbolStringArray'
 
 export class EventListenerParam {
   /**
    *
-   * @param {String} event
-   * @param {function(payload<Object>, type<string>)} callback
+   * @param {SymbolStringArray} events
+   * @param {EventHandlerBase~eventClb} callback
    */
-  constructor(event, callback) {
-    assert(!!event,
-      'EventListenerParam:constructor: ̀`event` property assert be not empty'
+  constructor(events, callback) {
+    assert(events instanceof SymbolStringArray,
+      'EventListenerParam:constructor: ̀`events` property assert be not empty'
     )
     assert(isFunction(callback),
       'EventListenerParam:constructor: ̀`callback` property assert be Callable'
     )
     /**
      *
-     * @params {String}
+     * @type {SymbolStringArray}
      */
-    this.event = event
+    this.events = events
     /**
      *
-     * @params {function(payload<Object>, type<string>)}
+     * @type {EventHandlerBase~eventClb}
      */
     this.callback = callback
   }
 
   /**
    *
-   * @param {String} event
-   * @param {function(payload<Object>, type<string>)} callback
+   * @param {SymbolStringArray} events
+   * @param {EventHandlerBase~eventClb} callback
    * @constructor
    * @readonly {EventListenerParam}
    */
-  static create(event, callback) {
-    return deepFreezeSeal(new this(event, callback))
+  static create(events, callback) {
+    return deepFreezeSeal(new this(events, callback))
   }
 }

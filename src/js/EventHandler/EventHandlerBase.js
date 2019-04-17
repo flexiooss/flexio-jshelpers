@@ -4,6 +4,7 @@ import {assert} from '../assert'
 import {UID} from '../uid'
 import {Sequence} from '../Sequence'
 import {EventListenerParam} from './EventListenerParam'
+import {StringArray} from '../types/StringArray'
 
 const _isDispatching_ = Symbol('_isDispatching_')
 const _sequenceId_ = Symbol('_sequenceId_')
@@ -16,23 +17,29 @@ export class EventHandlerBase {
   constructor() {
     /**
      *
-     * @params {Map<String|Symbol, Map<String|Symbol, {
-        callback: CallableFunction
+     * @params {Map<(String|Symbol), Map<(String|Symbol), {
+        callback: EventHandlerBase~eventClb
       } >>}
      * @protected
      */
     this._listeners = new Map()
 
+    /**
+     * @callback EventHandlerBase~eventClb
+     * @param {Object} payload
+     * @param {(string|Symbol)} type
+     */
+
     this._pendingPayload = new Map()
     /**
      *
-     * @params {Set<string|Symbol>}
+     * @params {Set<(string|Symbol)>}
      * @protected
      */
     this._isHandled = new Set()
     /**
      *
-     * @params {Set<String|Symbol>}
+     * @params {Set<(String|Symbol)>}
      * @protected
      */
     this._isPending = new Set()
@@ -61,7 +68,7 @@ export class EventHandlerBase {
 
   /**
    *
-   * @param {String|Symbol} event
+   * @param {(String|Symbol)} event
    * @param {Object} payload
    */
   dispatch(event, payload) {
@@ -81,7 +88,7 @@ export class EventHandlerBase {
 
   /**
    *
-   * @param {string|Symbol} event
+   * @param {(string|Symbol)} event
    * @protected
    */
   _ensureHaveListenersMap(event) {
@@ -93,8 +100,8 @@ export class EventHandlerBase {
   /**
    *
    * @protected
-   * @param {String|Symbol} event of Listener
-   * @param {String|Symbol} token of Listener
+   * @param {(String|Symbol)} event of Listener
+   * @param {(String|Symbol)} token of Listener
    */
   _invokeCallback(event, token) {
     this._isPending.add(token)
@@ -118,27 +125,30 @@ export class EventHandlerBase {
   /**
    *
    * @param {EventListenerParam} eventListenerParam
-   * @returns {String} token
+   * @returns {(String|StringArray)} token
    */
   addEventListener(eventListenerParam) {
     assert(eventListenerParam instanceof EventListenerParam,
       'EventHandlerBase:addEventListener: ̀`eventListenerParam` argument assert be an instance of EventListenerParam'
     )
+    const ids = new StringArray()
+    for (const event of eventListenerParam.events) {
+      this._ensureHaveListenersMap(event)
+      const id = this.nextID()
 
-    this._ensureHaveListenersMap(eventListenerParam.event)
-    const id = this.nextID()
+      this._listeners.get(event)
+        .set(id, {
+          callback: eventListenerParam.callback
+        })
+      ids.push(id)
+    }
 
-    this._listeners.get(eventListenerParam.event)
-      .set(id, {
-        callback: eventListenerParam.callback
-      })
-
-    return id
+    return ids.length > 1 ? ids : ids.first()
   }
 
   /**
    *
-   * @param {String|Symbol} event of Listener
+   * @param {(String|Symbol)} event of Listener
    * @param {String} token
    * @throws AssertionError
    */
@@ -154,7 +164,7 @@ export class EventHandlerBase {
 
   /**
    *
-   * @param {String|Symbol} event of Listener
+   * @param {(String|Symbol)} event of Listener
    * @param {String} token
    * @returns {boolean}
    */
@@ -164,7 +174,7 @@ export class EventHandlerBase {
 
   /**
    *
-   * @param {String|Symbol} event of Listener
+   * @param {(String|Symbol)} event of Listener
    * @param {Object} payload
    * @private
    */
@@ -178,7 +188,7 @@ export class EventHandlerBase {
 
   /**
    *
-   * @param {string|Symbol} event
+   * @param {(string|Symbol)} event
    * @protected
    */
   _stopDispatching(event) {
