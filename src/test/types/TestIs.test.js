@@ -109,7 +109,6 @@ export class TestIs extends TestCase {
   }
 
   testIsObject() {
-    console.log('p')
     assert(isObject(undefined) === false)
     assert(isObject(0) === false)
     assert(isObject(1) === false)
