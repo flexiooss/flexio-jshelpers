@@ -44,7 +44,7 @@ export const isNumber = a => typeof a === 'number' && !Number.isNaN(a)
  * @return {boolean}
  * @function
  */
-export const isObject = a => a && typeof a === 'object' && !Array.isArray(a)
+export const isObject = a => a !== null && typeof a === 'object' && !Array.isArray(a)
 /**
  *
  * @param {*} a
