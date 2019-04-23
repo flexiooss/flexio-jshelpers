@@ -9,9 +9,12 @@ export class TestMapExtended extends TestCase {
     let keys = map.keys()
     let entry = keys.next()
     assert(entry.value === undefined && entry.done === true)
+    assert(map.size() === 0)
 
+    // Set
     map.set('boat', true)
     map.set('plane', -42)
+    assert(map.size() === 2)
 
     // Get
     assert(map.get('boat') === true)
@@ -37,6 +40,7 @@ export class TestMapExtended extends TestCase {
 
     // Delete
     map.delete('boat')
+    assert(map.size() === 1)
     keys = map.keys()
     entry = keys.next()
     assert(entry.value === 'plane' && entry.done === false)
@@ -45,6 +49,7 @@ export class TestMapExtended extends TestCase {
 
     // Clear
     map.clear()
+    assert(map.size() === 0)
     entry = map.keys().next()
     assert(entry.value === undefined && entry.done === true)
   }

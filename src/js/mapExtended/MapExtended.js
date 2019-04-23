@@ -62,6 +62,10 @@ class MapExtended {
     this._collection.clear()
   }
 
+  size() {
+    return this._collection.size
+  }
+
   _constraint(value) {
     return value
   }
