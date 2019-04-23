@@ -22,11 +22,18 @@ export class TestStringHelpers extends TestCase {
 
   testMatchAll() {
     let base = 'Everything we do is connected with courage: silence, energy, light, living'
-    const res = matchAll2Array(new RegExp('e', 'g'), base)
-    console.log(res[0])
-    assert(res.length === 9)
-    assert(res[0].index === 2)
-    assert(res[1].index === 12)
+    const res1 = matchAll2Array(new RegExp('e', 'g'), base)
+    assert(res1.length === 9)
+    assert(res1[0].index === 2)
+    assert(res1[1].index === 12)
+
+    const res2 = matchAll2Array(new RegExp('li', 'g'), base)
+    assert(res2.length === 2)
+    assert(res2[0].index === 61)
+    assert(res2[1].index === 68)
+
+    const res3 = matchAll2Array(new RegExp('plok', 'g'), base)
+    assert(res3 === null)
   }
 
   testPadLeft() {

@@ -58,29 +58,36 @@ export const filterObject = (object, callback) => {
 
 /**
  *
- * @param object
+ * @param {Object} object
  * @return {ReadonlyArray<any>}
  */
 export const deepFreeze = (object) => {
   let propNames = Object.getOwnPropertyNames(object)
   propNames.forEach((name) => {
-    var prop = object[name]
+    let prop = object[name]
     if (typeof prop === 'object' && prop !== null && !Object.isFrozen(prop)) {
       deepFreeze(prop)
     }
   })
   return Object.freeze(object)
 }
+
+/**
+ *
+ * @param {Object} object
+ * @returns {Object}
+ */
 export const deepSeal = (object) => {
   let propNames = Object.getOwnPropertyNames(object)
   propNames.forEach((name) => {
-    var prop = object[name]
+    let prop = object[name]
     if (typeof prop === 'object' && prop !== null && !Object.isSealed(prop)) {
       deepSeal(prop)
     }
   })
   return Object.seal(object)
 }
+
 /**
  *
  * @param {Object} object
@@ -92,7 +99,7 @@ export const deepSeal = (object) => {
 export const deepFreezeSeal = (object) => {
   let propNames = Object.getOwnPropertyNames(object)
   propNames.forEach((name) => {
-    var prop = object[name]
+    let prop = object[name]
     if (typeof prop === 'object' && prop !== null && !Object.isSealed(prop) && !Object.isFrozen(prop)) {
       deepFreezeSeal(prop)
     }
@@ -105,17 +112,17 @@ export const deepFreezeSeal = (object) => {
  * @param {*} object
  * @param {string} keys
  * @param {string} separator
- * @returns {boolean|*}
+ * @returns {Error|*}
  */
 export const deepKeyResolver = (object, keys, separator = '.') => {
-  var arrayKeys = keys.split(separator)
-  var ret = object
+  let arrayKeys = keys.split(separator)
+  let ret = object
   do {
-    var key = arrayKeys.shift()
-    if (key in object) {
-      ret = object[key]
+    let key = arrayKeys.shift()
+    if (key in ret) {
+      ret = ret[key]
     } else {
-      return false
+      return new Error('No value for this path !')
     }
   } while (arrayKeys.length)
   return ret
@@ -129,8 +136,8 @@ export const deepKeyResolver = (object, keys, separator = '.') => {
  * @param {string} separator
  */
 export const deepKeyAssigner = (object, path, value, separator = '.') => {
-  var pathParts = path.split(separator)
-  var last = path.length
+  let pathParts = path.split(separator)
+  let last = path.length
 
   if (pathParts.length === 1) {
     object[path] = value
@@ -138,7 +145,7 @@ export const deepKeyAssigner = (object, path, value, separator = '.') => {
     if (!object[pathParts[0]]) {
       object[pathParts[0]] = {}
     }
-    var start = pathParts[0].length + 1
+    let start = pathParts[0].length + 1
     let subPath = path.substring(start, last)
     deepKeyAssigner(object[pathParts[0]], subPath, value, separator)
   }
@@ -151,21 +158,6 @@ export const intersectObjectByKey = (object) => {
       obj[key] = object[key]
       return obj
     }, {})
-}
-
-/**
- *
- * @param {object} object
- * @return {*}
- * @function
- * @export
- */
-export const maxKey = (object) => {
-  var max
-  for (const key in object) {
-    max = (key > max) ? key : max
-  }
-  return max
 }
 
 /**
@@ -303,19 +295,4 @@ export const deepMerge = (target, source) => {
   }
 
   return target
-}
-
-/**
- *
- * @param {Object} input
- * @param {array<string>} keys
- * @param {any} [defaultReturn=null]
- * @return {*}
- */
-export const valueByKeys = (input, keys, defaultReturn = null) => {
-  if (keys.length && typeof input !== 'undefined') {
-    const v = input[keys.shift()]
-    return (typeof v !== 'undefined') ? valueByKeys(v, keys, defaultReturn) : defaultReturn
-  }
-  return input
 }
