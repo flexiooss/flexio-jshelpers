@@ -26,6 +26,7 @@ export * from './src/js/sleep'
 export * from './src/js/Symbol'
 export * from './src/js/types/FlexEnum'
 export * from './src/js/types/FlexDate'
+export * from './src/js/types/FlexMap'
 
 export * from './src/js/types/FlexArray'
 export * from './src/js/types/StringArray'
