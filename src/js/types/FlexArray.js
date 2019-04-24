@@ -120,9 +120,33 @@ export class FlexArray extends Array {
   }
 
   /**
+   *
+   * @return {Array.<TYPE>}
+   */
+  toArray() {
+    return this.mapToArray(v => v)
+  }
+
+  /**
    * @template TYPE
    * @callback FlexArray~mapToClb<TYPE>
    * @param {TYPE} v
    * @return {*}
    */
+
+  /**
+   *
+   * @return {Array.<TYPE>}
+   */
+  toObject() {
+    return this.toArray()
+  }
+
+  /**
+   *
+   * @return {Array.<TYPE>}
+   */
+  toJSON() {
+    return this.toObject()
+  }
 }
