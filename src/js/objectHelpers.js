@@ -122,7 +122,7 @@ export const deepKeyResolver = (object, keys, separator = '.') => {
     if (key in ret) {
       ret = ret[key]
     } else {
-      return new Error('No value for this path !')
+      throw new Error('No value for this path !')
     }
   } while (arrayKeys.length)
   return ret

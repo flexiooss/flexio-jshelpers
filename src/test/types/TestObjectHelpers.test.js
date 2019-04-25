@@ -137,14 +137,17 @@ export class TestObjectHelpers extends TestCase {
         }
       }
     }
+    o.c['@plouc/bam'] = 'boum'
+
     assert(deepKeyResolver(o, 'a') === 1)
-    try {
-      deepKeyResolver(o, 'a.b', '.')
-      assert(true === false)
-    } catch (e) {
-    }
+
+    assert.throws(() => {
+      deepKeyResolver(o, 'a.b')
+    })
+
     assert(deepKeyResolver(o, 'c.42.x', '.') === null)
     assert(deepKeyResolver(o, 'c.42.y', '.') === true)
+    assert(deepKeyResolver(o, 'c.@plouc/bam') === 'boum')
   }
 
   testDeepKeyAssigner() {
