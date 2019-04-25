@@ -119,7 +119,7 @@ export const deepKeyResolver = (object, keys, separator = '.') => {
   let ret = object
   do {
     let key = arrayKeys.shift()
-    if (key in ret) {
+    if (ret[key] !== undefined && key in ret) {
       ret = ret[key]
     } else {
       throw new Error('No value for this path !')

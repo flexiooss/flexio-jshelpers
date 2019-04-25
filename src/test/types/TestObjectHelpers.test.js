@@ -143,7 +143,9 @@ export class TestObjectHelpers extends TestCase {
 
     assert.throws(() => {
       deepKeyResolver(o, 'a.b')
-    })
+    },
+    /^Error: No value for this path !$/
+    )
 
     assert(deepKeyResolver(o, 'c.42.x', '.') === null)
     assert(deepKeyResolver(o, 'c.42.y', '.') === true)
