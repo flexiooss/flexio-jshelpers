@@ -104,8 +104,8 @@ export class FlexArray extends Array {
    * @return {Array<TYPE_OUT>}
    */
   mapTo(init, clb) {
-    this.forEach((v) => {
-      init.push(clb(v))
+    this.forEach((v, k, a) => {
+      init.push(clb(v, k, a))
     })
     return init
   }
@@ -131,6 +131,8 @@ export class FlexArray extends Array {
    * @template TYPE
    * @callback FlexArray~mapToClb<TYPE>
    * @param {TYPE} v
+   * @param {string} k
+   * @param {this} a
    * @return {*}
    */
 
