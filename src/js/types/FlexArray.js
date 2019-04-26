@@ -81,6 +81,15 @@ export class FlexArray extends Array {
   /**
    *
    * @param {FlexArray~filter<TYPE>} callback
+   * @return {TYPE}
+   */
+  find(callback) {
+    return super.find(callback)
+  }
+
+  /**
+   *
+   * @param {FlexArray~filter<TYPE>} callback
    * @param thisArg
    * @return {any[]}
    */
