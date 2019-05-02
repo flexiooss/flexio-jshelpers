@@ -17,6 +17,6 @@ const getGlobal = function() {
 export const globalScope = getGlobal()
 
 if (!globalScope[FLEXIO_IMPORT_OBJECT]) {
-  window[FLEXIO_IMPORT_OBJECT] = {}
+  globalScope[FLEXIO_IMPORT_OBJECT] = {}
 }
 export const globalFlexioImport = globalScope[FLEXIO_IMPORT_OBJECT]
