@@ -1,5 +1,5 @@
 /* global window,self,global */
-export const FLEXIO_IMPORT_OBJECT = Symbol('FLEXIO_IMPORT_OBJECT')
+export const FLEXIO_IMPORT_OBJECT = Symbol.for('FLEXIO_IMPORT_OBJECT')
 
 const getGlobal = function() {
   if (typeof self !== 'undefined') {
