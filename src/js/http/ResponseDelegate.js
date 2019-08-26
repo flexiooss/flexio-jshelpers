@@ -11,7 +11,7 @@ class ResponseDelegate {
   /**
    * @return {string}
    */
-  body() {
+  payload() {
   }
 
   /**
